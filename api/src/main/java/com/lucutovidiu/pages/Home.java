@@ -20,4 +20,8 @@ public interface Home {
     @GetMapping(value = "/favicon.ico", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @ResponseBody
     byte[] getFavicon() throws IOException;
+
+    @GetMapping(value = "/robots.txt", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @ResponseBody
+    byte[] getRobots() throws IOException;
 }

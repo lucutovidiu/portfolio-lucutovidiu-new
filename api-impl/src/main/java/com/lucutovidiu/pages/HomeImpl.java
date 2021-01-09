@@ -41,6 +41,11 @@ public class HomeImpl implements Home {
         return Files.readAllBytes(Paths.get("api-impl/src/main/resources/static/favicon.ico"));
     }
 
+    @Override
+    public byte[] getRobots() throws IOException {
+        return Files.readAllBytes(Paths.get("api-impl/src/main/resources/static/robots.txt"));
+    }
+
     @SuppressWarnings("ConstantConditions")
     protected String fetchClientIpAddr() {
         HttpServletRequest request = ((ServletRequestAttributes) (RequestContextHolder.getRequestAttributes())).getRequest();
