@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="footer">
+    <div class="footer_wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 ">
+                    <span class="h5 cwhite"><strong>Technologies that I've used so far</strong></span>
+                    <div class="footer_what_i_do">
+                        <div th:insert="shared/footercard :: footercard('HTML5', 'fab fa-html5 footer_card_badge')"></div>
+                        <div th:insert="shared/footercard :: footercard('CSS3', 'fab fa-css3-alt footer_card_badge')"></div>
+                        <div th:insert="shared/footercard :: footercard('Sass', 'fab fa-sass footer_card_badge')"></div>
+                        <div th:insert="shared/footercard :: footercard('BootStrap', 'fab fa-bootstrap footer_card_badge')"></div>
+                        <div th:insert="shared/footercard :: footercard('Angular', 'fab fa-angular footer_card_badge')"></div>
+                        <div th:insert="shared/footercard :: footercard('React', 'fab fa-react footer_card_badge')"></div>
+                        <div th:insert="shared/footercard :: footercard('Java', 'fab fa-java footer_card_badge')"></div>
+                        <!--                        <div th:insert="footercard :: footercard('Next.js', '/img/logos/next-js-logo.png')"></div>-->
+                        <div th:insert="shared/footercard :: footercard('Docker', 'fab fa-docker footer_card_badge')"></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="mt-3"> &nbsp;&nbsp;&nbsp;
+                        <q class="h6">
+                            <strong>
+                                I like to build secure, interactive websites using above mentioned
+                                technologies, and I enjoy doing it. And always learning more...
+                            </strong>
+                        </q>
+                    </h6>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="mt-3 h5 cwhite">Contact Me</h6>
+                    <div class="footer_what_i_do">
+                        <div th:insert="shared/footercard :: footercardanchor('Email', 'far fa-envelope','/Contact', '_self')"></div>
+                        <div th:insert="shared/footercard :: footercardanchor('LinkedIn', 'fab fa-linkedin', 'https://www.linkedin.com/in/ovidiu-lucut-911962174', '_blank')"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

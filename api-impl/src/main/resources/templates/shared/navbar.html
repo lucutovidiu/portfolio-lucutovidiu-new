@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="navbar(activePage)">
+    <nav class="navBar_wrapper">
+        <ul class="navBar_desktop_menu">
+            <li class="navBar_desktop_logo">Ovidiu Lucut</li>
+            <span class="navBar_items_list">
+            <li><a href="/">
+                <span th:style="${activePage == 'HOME' ? 'color:#3498db; font-family: system-ui' : 'color:#b9b9b9'}">Home</span></a></li>
+			<li><a href="/Portfolios">
+                <span th:style="${activePage == 'PORTFOLIOS' ? 'color:#3498db; font-family: system-ui' : 'color:#b9b9b9'}">Portfolios</span></a></li>
+           	<li>
+                <a href="/Contact">
+                <span th:style="${activePage == 'CONTACT' ? 'color:#3498db; font-family: system-ui' : 'color:#b9b9b9'}">Contact</span></a></li>
+            <li>
+                <a href="/About">
+                <span th:style="${activePage == 'ABOUT' ? 'color:#3498db; font-family: system-ui' : 'color:#b9b9b9'}">About</span></a></li>
+          </span>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>

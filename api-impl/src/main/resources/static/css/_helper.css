@@ -1,0 +1,50 @@
+.centerText {
+    text-align: center;
+}
+
+.p1 {
+    font-size: 0.8rem;
+}
+
+.cwhite {
+    color: white;
+}
+
+.active {
+    color: #1b547a !important;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.border-red {
+    border: 2px solid red;
+}
+
+.mt-navBar {
+    position: relative;
+    top: 90px;
+}
+
+.errorMsg {
+  color: #ff2f4c;
+  font-weight: bold;
+}
+
+.successMsg {
+  color: #1aff5a;
+  font-weight: bold;
+}
+
+.noDisplay {
+    display: none;
+}
+.loading {
+    color: #1aff5a;
+    font-weight: bold;
+    text-align: center;
+}
+.display {
+    display: block;
+}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="footercard(title, class)">
+    <div class="footer_card">
+        <div class="title" th:text="${title}"></div>
+        <div th:class="${class}"></div>
+    </div>
+</div>
+<div th:fragment="footercardanchor(title, class, anchor, target)">
+    <a class="footer_card" th:href="${anchor}" th:target="${target}">
+        <div class="title" th:text="${title}"></div>
+        <span th:class="${class}"></span>
+    </a>
+</div>
+</body>
+</html>

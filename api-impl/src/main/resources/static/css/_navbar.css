@@ -1,0 +1,107 @@
+.navBar_wrapper {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    height: 60px;
+    width: 100vw;
+    font-family: monospace;
+}
+.desktop_active{
+    color:#3498db;
+    font-family: system-ui;
+}
+@media screen and (min-width: 728px) {
+    .navBar_wrapper {
+        background-color: rgba(19, 19, 17, 0.9);
+    }
+}
+.a-button:hover {
+    color: #9e9b9b;
+}
+.navBar_mobile_menu {
+    margin: 0;
+    padding: 0;
+    color: #9e9b9b;
+}
+.navBar_mobile_menu #navBar_mobile_menu-btn {
+    padding: 2rem;
+    font-size: 1.5rem;
+    transition: opacity 2s;
+    cursor: pointer;
+}
+.navBar_mobile_menu .navBar_mobile_hidden_menu {
+    font-size: 1.3rem;
+    height: 100vh;
+    width: 13rem;
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 5%;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    transition: opacity 2s;
+    background: rgba(19, 19, 17, 0.9);
+}
+.navBar_mobile_menu .navBar_mobile_hidden_menu a {
+    text-decoration: none;
+}
+.navBar_mobile_menu .navBar_mobile_hidden_menu li {
+    padding-top: 20px;
+}
+.navBar_mobile_menu .navBar_mobile_hidden_menu .a-button {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #9e9b9b;
+    margin: -0.8rem;
+}
+@media screen and (max-width: 728px) {
+    .navBar_mobile_menu {
+        display: block;
+    }
+}
+@media screen and (min-width: 728px) {
+    .navBar_mobile_menu {
+        display: none;
+    }
+}
+.navBar_desktop_menu {
+    width: 100%;
+    text-decoration: none;
+    list-style: none;
+}
+.navBar_desktop_menu .navBar_desktop_logo {
+    float: left;
+    color: #b9b9b9;
+    padding-left: 1rem;
+    font-weight: bold;
+    font-size: 2rem;
+}
+@media screen and (max-width: 728px) {
+    .navBar_desktop_menu {
+        display: none;
+    }
+}
+@media screen and (min-width: 728px) {
+    .navBar_desktop_menu {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        font-size: 1.4rem;
+        line-height: 60px;
+    }
+    .navBar_desktop_menu .navBar_items_list {
+        float: right;
+        font-weight: bold;
+        font-size: 2rem;
+    }
+    .navBar_desktop_menu li {
+        text-decoration: none;
+        padding-right: 25px;
+        float: left;
+    }
+    .navBar_desktop_menu li a {
+        text-decoration: none;
+        font-family: monospace;
+    }
+}

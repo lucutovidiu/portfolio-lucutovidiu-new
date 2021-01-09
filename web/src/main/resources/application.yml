@@ -1,0 +1,19 @@
+spring:
+  mail:
+    protocol: smtp
+    host: smtp.gmail.com
+    port: 587
+    username: ${DEFAULT_GMAIL_EMAIL_ADDRESS}
+    password: ${DEFAULT_GMAIL_EMAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  thymeleaf:
+    cache: false
+env:
+  defaultGmailEmail: ${DEFAULT_GMAIL_EMAIL_ADDRESS}
+  defaultYahooEmail: ${DEFAULT_YAHOO_EMAIL_ADDRESS}
+  locationEmailed: ${EMAIL_CLIENT_LOCATION}
