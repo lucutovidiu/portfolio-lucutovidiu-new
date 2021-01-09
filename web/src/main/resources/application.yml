@@ -11,11 +11,10 @@ spring:
           auth: true
           starttls:
             enable: true
-  thymeleaf:
-    cache: false
 env:
   defaultGmailEmail: ${DEFAULT_GMAIL_EMAIL_ADDRESS}
   defaultYahooEmail: ${DEFAULT_YAHOO_EMAIL_ADDRESS}
   locationEmailed: ${EMAIL_CLIENT_LOCATION}
+  urlForCrossOrigin: ${URL_FOR_CROSS_ORIGIN:localhost}
 server:
   port: ${PORT:8080}

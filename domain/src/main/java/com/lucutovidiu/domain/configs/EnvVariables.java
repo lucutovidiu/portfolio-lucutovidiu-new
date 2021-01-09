@@ -12,6 +12,7 @@ public class EnvVariables {
     private String defaultGmailEmail;
     private String defaultYahooEmail;
     private String locationEmailed;
+    private String urlForCrossOrigin;
 
     public boolean shouldLocationBeEmailed() {
         return locationEmailed.equals("true");

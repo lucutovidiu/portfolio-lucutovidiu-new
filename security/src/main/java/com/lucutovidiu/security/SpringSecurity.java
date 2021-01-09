@@ -1,12 +1,16 @@
 package com.lucutovidiu.security;
 
+import com.lucutovidiu.domain.configs.EnvVariables;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
@@ -15,6 +19,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SpringSecurity extends WebSecurityConfigurerAdapter {
 
     //    private CustomUserDetailsService customUserDetailsService;
+    private final EnvVariables envVariables;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //@formatter:on
@@ -24,7 +30,8 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                 .and()
 
                 .authorizeRequests()
-                .antMatchers("/swagger**",
+                .antMatchers("/api/swagger**",
+                        "/swagger**",
                         "/",
                         "/About",
                         "/Contact",
@@ -42,6 +49,7 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/Login")
                 .permitAll()
+
                 .and()
                 .cors();
 //                .and();
@@ -50,5 +58,22 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
 //                .logoutUrl("/logout")
 //                .deleteCookies("JSESSIONID")
 //                .logoutSuccessUrl("/login");
+    }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry
+                        .addMapping("/**")
+                        .allowedMethods("POST", "GET", "PUT", "DELETE", "OPTIONS")
+                        .allowedOrigins(envVariables.getUrlForCrossOrigin())
+                        .allowedHeaders("Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization")
+                        .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials")
+                        .allowCredentials(true)
+                        .maxAge(3600);
+            }
+        };
     }
 }
