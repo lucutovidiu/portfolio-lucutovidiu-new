@@ -17,3 +17,5 @@ env:
   defaultGmailEmail: ${DEFAULT_GMAIL_EMAIL_ADDRESS}
   defaultYahooEmail: ${DEFAULT_YAHOO_EMAIL_ADDRESS}
   locationEmailed: ${EMAIL_CLIENT_LOCATION}
+server:
+  port: ${$PORT:8080}
