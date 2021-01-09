@@ -1,7 +1,5 @@
 package com.lucutovidiu.serviceimpl;
 
-import com.lucutovidiu.domain.configs.EnvVariables;
-import com.lucutovidiu.ip.Location;
 import com.lucutovidiu.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +15,6 @@ import org.springframework.stereotype.Component;
 public class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender javaMailSender;
-    private final EnvVariables envVariables;
 
     @Override
     public boolean sendEmail(String from, String[] to, String subject, String body) {
@@ -33,13 +30,5 @@ public class EmailServiceImpl implements EmailService {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public void sendLocationEmail(Location location) {
-        if (envVariables.shouldLocationBeEmailed()) {
-            sendEmail(envVariables.getDefaultGmailEmail(), new String[]{envVariables.getDefaultYahooEmail()},
-                    "New Visit from: " + location.getCountry_name(), location.toString());
-        }
     }
 }
