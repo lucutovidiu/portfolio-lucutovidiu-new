@@ -28,14 +28,14 @@ function sendMsg() {
         processData: false,
         success: function (data, status, jQxhr) {
             $("#loading").addClass("noDisplay");
-            if (status) {
+            if (data) {
                 $("#successMsg").removeClass("noDisplay");
             } else {
                 $("#errorMsg").removeClass("noDisplay");
             }
             clearMessages();
         },
-        error: function (jqXhr, textStatus, errorThrown) {
+        error: function (data, textStatus, errorThrown) {
             $("#loading").addClass("noDisplay");
             clearMessages();
             console.log(errorThrown);
