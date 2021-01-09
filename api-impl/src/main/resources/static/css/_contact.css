@@ -61,9 +61,6 @@ label {
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
 }
-.input-custom input{
-    width: 100% !important;
-}
 .submit-wrapper{
     position: relative;
     width: 100%;

@@ -1,0 +1,49 @@
+.main_wrapper_login {
+    min-height: 100vh;
+    background: radial-gradient(
+            circle closest-corner at center,
+            rgba(34, 34, 34, 0.918),
+            black 70%
+    ) no-repeat;
+}
+
+.login_wrapper {
+    background-color: rgba(92, 87, 87, 0.788);
+    min-width: 100px;
+    max-width: 40%;
+    margin: 0 auto;
+    position: absolute;
+    padding: 1.5rem 2rem;
+    left: 50%;
+    top: 55%;
+    border-radius: 9px;
+    transform: translate(-50%, -50%);
+}
+
+.login_wrapper .signup_btn {
+    margin-bottom: 0.6rem;
+}
+
+@media all and (min-height: 800px) {
+    .login_wrapper {
+        top: 40%;
+        padding: 2rem;
+    }
+
+    .login_wrapper .signup_btn {
+        margin-bottom: 1rem;
+    }
+}
+
+input {
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #757575;
+}
+
+.center {
+    text-align: center;
+}

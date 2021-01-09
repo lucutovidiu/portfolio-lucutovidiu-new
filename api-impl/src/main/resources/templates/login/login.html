@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>About | Ovi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/_navbar.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/_login.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/_helper.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div th:insert="shared/navbar :: navbar(${activePage})"></div>
+<div class="main_wrapper_login">
+    <div class="login_wrapper">
+        <div class="col-xs-12">
+            <h4 style="color:#01c851; font-weight: bold" class="text-center"> Login Form </h4>
+        </div>
+        <form id="loginForm" class="container-fluid">
+            <div class="col-xs-12 mt-medium">
+                <div class="group input-custom">
+                    <input type="text" required placeholder="Email"/>
+                    <span class="bar"></span>
+                </div>
+            </div>
+            <div class="col-xs-12 mt-medium">
+                <div class="group input-custom">
+                    <input type="password" required placeholder="Password"/>
+                    <span class="bar"></span>
+                </div>
+            </div>
+            <div class="col-xs-12 mt-medium center">
+                <button class="btn btn-success" type="submit">Login</button>
+                <!--            <button class="btn btn-success ml-3" type="submit">-->
+                <!--                Signup <i class="fas fa-long-arrow-alt-right"></i>-->
+                <!--            </button>-->
+            </div>
+            <!--        <div class="col-xs-12 mt-medium">-->
+            <!--            <button class="btn btn-outline-ligh" type="submit">-->
+            <!--                Forgot Password-->
+            <!--            </button>-->
+            <!--        </div>-->
+        </form>
+    </div>
+</div>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/index.js}"></script>
+</body>
+</html>
