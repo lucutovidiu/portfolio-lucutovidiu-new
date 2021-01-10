@@ -7,24 +7,27 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.concurrent.CompletableFuture;
+import java.util.Optional;
 
 @Component
 @Slf4j
 public class LocationServiceImpl implements LocationService {
 
     @Override
-    public CompletableFuture<Location> getLocationByIpAddress(String ipAddress) {
-        CompletableFuture<Location> resultFuture = new CompletableFuture<>();
+    public Optional<Location> getUserLocation() {
+        return getUserLocationByIpAddress(LocationService.fetchClientIpAddr());
+    }
+
+    private Optional<Location> getUserLocationByIpAddress(String ipAddress) {
+        if (ipAddress.equals(LOCAL_HOST)) return Optional.empty();
         try {
-            URI uri = new URI(createUrlFromIp(ipAddress));
             RestTemplate template = new RestTemplate();
-            ResponseEntity<Location> result = template.getForEntity(uri, Location.class);
-            resultFuture.complete(result.getBody());
-        } catch (URISyntaxException e) {
-            resultFuture.completeExceptionally(e);
+            ResponseEntity<Location> result = template.getForEntity(new URI(createUrlFromIp(ipAddress)), Location.class);
+            return Optional.ofNullable(result.getBody());
+        } catch (URISyntaxException exception) {
+            log.error("Couldn't fetch remote address fo ip: {} and message: {}", ipAddress, exception.getMessage());
+            return Optional.empty();
         }
-        return resultFuture;
     }
 
     private String createUrlFromIp(String ipAddress) {

@@ -11,10 +11,14 @@ spring:
           auth: true
           starttls:
             enable: true
+  data:
+    mongodb:
+      uri: ${MONGO_DB_URI}
 env:
   defaultGmailEmail: ${DEFAULT_GMAIL_EMAIL_ADDRESS}
   defaultYahooEmail: ${DEFAULT_YAHOO_EMAIL_ADDRESS}
   locationEmailed: ${EMAIL_CLIENT_LOCATION}
   urlForCrossOrigin: ${URL_FOR_CROSS_ORIGIN:localhost}
+  commaSeparatedNotSavedLocations: ${COMMA_SEPARATED_NOT_SAVED_LOCATIONS}
 server:
   port: ${PORT:8080}

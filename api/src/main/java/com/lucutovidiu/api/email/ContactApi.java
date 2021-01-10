@@ -12,5 +12,5 @@ import javax.validation.Valid;
 public interface ContactApi {
 
     @PostMapping("/contact")
-    boolean sendContactEmail(@RequestBody @Valid ContactRequest request);
+    boolean sendContactEmailAndSave(@RequestBody @Valid ContactRequestDto request);
 }

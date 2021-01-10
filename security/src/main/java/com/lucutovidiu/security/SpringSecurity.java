@@ -1,6 +1,6 @@
 package com.lucutovidiu.security;
 
-import com.lucutovidiu.domain.configs.EnvVariables;
+import com.lucutovidiu.util.EnvVariables;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -42,7 +42,7 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                 .and()
 
                 .authorizeRequests()
-                .antMatchers("/api/**", "/Portfolios")
+                .antMatchers("/api/**")
                 .authenticated()
                 .and()
 
