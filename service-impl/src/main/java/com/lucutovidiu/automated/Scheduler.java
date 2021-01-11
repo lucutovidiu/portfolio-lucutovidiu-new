@@ -16,7 +16,6 @@ public class Scheduler {
     //cron every 2 hours
     @Scheduled(cron = "0 0 */2 * * ?")
     public void emailExpiredProducts() {
-        System.out.println("test each minute");
-//        emailService.sendExpiredProductsEmail();
+        emailService.sendExpiredProductsEmail();
     }
 }
