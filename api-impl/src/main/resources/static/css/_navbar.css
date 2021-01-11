@@ -8,7 +8,7 @@
 }
 @media screen and (max-width: 728px) {
     .navBar_wrapper {
-        background-image: linear-gradient(40deg, #e8e8e8 0%, #e8e8e8 35%, #efeff0 35%, #efeff0 100%);
+        display: none;
     }
     .navBar_mobile_menu {
         display: block;

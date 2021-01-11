@@ -1,23 +1,23 @@
 @import url("https://fonts.googleapis.com/css?family=Anton&display=swap");
+
 .about_wrapper {
     position: relative;
     padding-bottom: 2rem;
     background-image: linear-gradient(195deg, #e8e8e8 0%, #e8e8e8 35%, #efeff0 35%, #efeff0 100%);
 }
-.about_wrapper .content_wrapper {
-    position: relative;
-    margin-top: 60px;
-}
+
 .about_wrapper .content_wrapper .about_title {
     font-size: 2rem;
     font-family: "Anton", sans-serif;
     text-align: center;
 }
+
 .about_wrapper .content_wrapper .about_title_myName {
     padding-top: 1rem;
     display: inline-block;
     position: relative;
 }
+
 .about_wrapper .content_wrapper .about_title_myName::after {
     content: "";
     position: absolute;
@@ -27,10 +27,12 @@
     width: 70%;
     background-image: linear-gradient(to right, #c7bbe2 0%, #96b0e2 45%, #87cfdb 100%);
 }
+
 .about_wrapper .content_wrapper .about_title_subtitle {
     font-size: 0.9rem;
     padding-top: 0.7rem;
 }
+
 .about_wrapper .content_wrapper .main_content_wrapper_box {
     width: 95%;
     margin: 2rem auto 0rem auto;
@@ -38,22 +40,33 @@
     background-image: linear-gradient(195deg, #ebebeb 0%, #ebebeb 30%, #efeff0 30%, #efeff0 100%);
     box-shadow: 0 0 15px 1px #cacaca;
 }
+
 @media screen and (min-width: 800px) {
     .about_wrapper .content_wrapper .main_content_wrapper_box {
         width: 75%;
     }
 }
+
 @media screen and (min-width: 1500px) {
     .about_wrapper .content_wrapper .main_content_wrapper_box {
         width: 65%;
     }
 }
+
+@media all and (min-width: 729px) {
+    .content_wrapper {
+        position: relative;
+        margin-top: 60px;
+    }
+}
+
 .about_wrapper .content_wrapper .main_content_wrapper_box .motto {
     padding-top: 2rem;
     font-family: "Hand Writing";
     display: inline-block;
     position: relative;
 }
+
 .about_wrapper .content_wrapper .main_content_wrapper_box .motto::after {
     content: "";
     position: absolute;
@@ -63,6 +76,7 @@
     width: 70%;
     background-image: linear-gradient(to right, #c7bbe2 0%, #96b0e2 45%, #87cfdb 100%);
 }
+
 .about_wrapper .content_wrapper .main_content_wrapper_box .get_in_contact {
     clip-path: polygon(0 11%, 100% 37%, 100% 56%, 0 81%);
     height: 45vh;
@@ -71,16 +85,19 @@
     font-family: "Lato Black";
     position: relative;
 }
+
 @media all and (max-width: 475px) {
     .about_wrapper .content_wrapper .main_content_wrapper_box .get_in_contact {
         clip-path: polygon(0 0, 100% 17%, 100% 79%, 0 100%);
     }
 }
+
 .about_wrapper .content_wrapper .main_content_wrapper_box .my_story_title {
     padding-bottom: 0.4rem;
     display: inline-block;
     position: relative;
 }
+
 .about_wrapper .content_wrapper .main_content_wrapper_box .my_story_title::after {
     content: "";
     position: absolute;
@@ -90,39 +107,46 @@
     width: 70%;
     background-image: linear-gradient(to right, #c7bbe2 0%, #96b0e2 45%, #87cfdb 100%);
 }
+
 .about_wrapper .content_wrapper .main_content_wrapper_box .my_story_content {
     padding: 2rem 1rem;
     text-indent: 1.5rem;
     text-align: justify;
     font-weight: 600;
 }
+
 @media all and (max-width: 767px) {
     .get_in_tough_btn {
         margin-left: 3rem;
         margin-top: 0.8rem;
     }
 }
+
 .v-align {
     position: absolute;
     z-index: 1;
     top: calc(41%);
     width: 100%;
 }
+
 @media all and (max-width: 475px) {
     .v-align {
         top: calc(35%);
     }
 }
+
 @media all and (max-width: 389px) {
     .v-align {
         top: calc(20%);
     }
 }
+
 @media all and (max-width: 339px) {
-    .get_in_tough_btn a{
+    .get_in_tough_btn a {
         margin-bottom: 0.5rem;
     }
 }
+
 .btn-gradient {
     border: none;
     padding: 0.2rem 0.6rem;
@@ -130,6 +154,7 @@
     color: black;
     background-image: linear-gradient(150deg, #7a46f3 0%, #3f78e0 45%, #55aab9 100%);
 }
+
 .btn-gradient:hover, .btn-gradient:active {
     outline: none;
     text-decoration: none;
