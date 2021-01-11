@@ -14,7 +14,7 @@
 </head>
 <body>
 <div th:insert="shared/navbar :: navbar(${activePage})"></div>
-
+<div th:insert="shared/navbar-mobile :: navbar-mobile(${activePage})"></div>
 <div class="container-fluid about_wrapper">
     <div class="content_wrapper ">
         <div class="about_title">
@@ -86,6 +86,8 @@
         </div>
     </div>
 </div>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/navbar/navbar.js}"></script>
 <div th:insert="shared/footer :: footer"></div>
 </body>
 </html>

@@ -1,35 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:fragment="headerfiles">
-    <meta charset="UTF-8"/>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
 <div th:fragment="navbar(activePage)">
     <nav class="navBar_wrapper">
         <ul class="navBar_desktop_menu">
             <li class="navBar_desktop_logo">Ovidiu Lucut</li>
             <span class="navBar_items_list">
-            <li>
-                <a href="/">
-                <span th:style="${activePage == 'HOME' ? 'color:#3498db' : 'color:#b9b9b9'}">Home</span></a></li>
-			<li>
-                <a href="/portfolios">
-                <span th:style="${activePage == 'PORTFOLIOS' ? 'color:#3498db' : 'color:#b9b9b9'}">Portfolios</span></a></li>
-           	<li sec:authorize="hasRole('ADMIN')">
-                <a id="newPortfolio" href="/add-new-portfolio">
-                <span th:style="${activePage == 'ADDNEWPORTFOLIO' ? 'color:#3498db' : 'color:#b9b9b9'}">New Portfolio</span></a></li>
-           	<li>
-                <a href="/contact">
-                <span th:style="${activePage == 'CONTACT' ? 'color:#3498db' : 'color:#b9b9b9'}">Contact</span></a></li>
-            <li>
-                <a href="/about">
-                <span th:style="${activePage == 'ABOUT' ? 'color:#3498db' : 'color:#b9b9b9'}">About</span></a></li>
-            <li>
-                    <a href="/logout" sec:authorize="isAuthenticated()" style="color:#b9b9b9; font-family: system-ui">Logout</a>
-                    <a href="/login" sec:authorize="isAnonymous()"
-                       th:style="${activePage == 'LOGIN' ? 'color:#3498db' : 'color:#b9b9b9'}">Login</a>
-            </li>
+                <div th:insert="shared/navbar-items :: navbar-items(${activePage})"></div>
           </span>
         </ul>
     </nav>

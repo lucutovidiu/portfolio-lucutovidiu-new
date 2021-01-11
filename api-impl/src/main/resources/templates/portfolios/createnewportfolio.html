@@ -11,5 +11,8 @@
 </head>
 <body>
 <div th:insert="shared/navbar :: navbar(${activePage})"></div>
+<div th:insert="shared/navbar-mobile :: navbar-mobile(${activePage})"></div>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/navbar/navbar.js}"></script>
 </body>
 </html>

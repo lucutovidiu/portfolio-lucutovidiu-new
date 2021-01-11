@@ -113,6 +113,16 @@
         top: calc(35%);
     }
 }
+@media all and (max-width: 389px) {
+    .v-align {
+        top: calc(20%);
+    }
+}
+@media all and (max-width: 339px) {
+    .get_in_tough_btn a{
+        margin-bottom: 0.5rem;
+    }
+}
 .btn-gradient {
     border: none;
     padding: 0.2rem 0.6rem;

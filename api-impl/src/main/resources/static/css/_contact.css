@@ -4,7 +4,7 @@
     left: 0;
     background-image: url("/img/contact/contact1.jpg");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     background-position: center;
     /*background: radial-gradient(*/
     /*        circle closest-corner at center,*/
@@ -20,7 +20,7 @@
 .contact_form_wrapper {
     position: relative;
     border-radius: 10px;
-    max-width: 40%;
+    width: 45%;
     margin: 0 auto;
     background-color: rgba(92, 87, 87, 0.788);
     padding: 1.5rem 2rem;
@@ -36,6 +36,17 @@
     margin: 0 auto;
     height: 2.5rem;
     line-height: 1rem;
+}
+@media all and (max-width: 576px) {
+    .contact_form_wrapper {
+        width: 70%;
+    }
+}
+
+@media all and (max-width: 350px) {
+    .contact_form_wrapper {
+        width: 90%;
+    }
 }
 /* form starting stylings ------------------------------- */
 .group {

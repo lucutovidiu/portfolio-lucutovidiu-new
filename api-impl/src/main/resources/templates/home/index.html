@@ -4,7 +4,7 @@
     <title>Welcome to Ovi's portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_index.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap4/bootstrap.min.css}"/>>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap4/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_footer.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_helper.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_navbar.css}"/>
@@ -26,11 +26,12 @@
 <div id="section1"></div>
 <br/>
 <div th:insert="shared/navbar :: navbar(${activePage})"></div>
-<div th:insert="shared/navbar-mobile :: navbar-mobile"></div>
+<div th:insert="shared/navbar-mobile :: navbar-mobile(${activePage})"></div>
 <div th:insert="home/landingpage :: landingpage"></div>
 <div th:insert="home/howthissitewasbuilt :: howthissitewasbuilt"></div>
 <div th:insert="shared/footer :: footer"></div>
 <script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/navbar/navbar.js}"></script>
 <script th:src="@{/js/index.js}"></script>
 </body>
 </html>

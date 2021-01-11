@@ -13,7 +13,6 @@
 
 .login_wrapper {
     background-color: rgba(92, 87, 87, 0.788);
-    max-width: 45%;
     margin: 0 auto;
     position: absolute;
     padding: 1.5rem 2rem;
@@ -22,7 +21,17 @@
     border-radius: 9px;
     transform: translate(-50%, -50%);
 }
+@media all and (max-width: 576px) {
+    .login_wrapper {
+        width: 70%;
+    }
+}
 
+@media all and (max-width: 350px) {
+    .login_wrapper {
+        width: 90%;
+    }
+}
 .login_wrapper .signup_btn {
     margin-bottom: 0.6rem;
 }
