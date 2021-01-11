@@ -25,25 +25,9 @@ html {
   width: 100%;
   padding: 2rem 1rem;
   text-transform: uppercase;
-}
-.landing_page_p1 {
-  font-size: 1.5rem;
-  padding-top: 0.9rem;
-}
-.landing_page_h1 {
-  font-size: 2.3rem;
-}
-@media screen and (max-width: 728px) {
-  .landing_page_wrapper .landing_page_content_wrapper .landing_page_p1 {
-    font-size: 0.9rem;
-  }
-  .landing_page_wrapper .landing_page_content_wrapper .landing_page_h1 {
-    font-size: 1.3rem;
-    font-weight: bold;
-  }
+  font-width: bold;
 }
 .landing_page_arrow_down span {
-  font-size: 1.6rem;
   animation: 1s ease infinite pulse;
   color: #2980b9;
   cursor: pointer;
@@ -68,8 +52,8 @@ html {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   text-align: center;
-  font-size: 2.5rem;
   font-family: "Hand Writing";
+  color: #B5B9B9;
 }
 .landing_page_p2 {
   font-size: 1.6rem;

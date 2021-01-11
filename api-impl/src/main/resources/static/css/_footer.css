@@ -8,10 +8,10 @@
 }
 .footer_wrapper .footer_what_i_do .footer_card {
     float: left;
-    margin: 0;
+    margin: 0 auto;
     padding: 0.5rem;
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 .footer_wrapper .footer_what_i_do .footer_card .title {
     font-size: 0.8rem;
@@ -19,7 +19,7 @@
     font-weight: bold;
 }
 .footer_wrapper .footer_what_i_do .footer_card .footer_card_badge {
-    font-size: 2.5rem;
+    font-size: 1.4rem;
     margin: 0 auto;
 }
 .footer_wrapper .footer_what_i_do i {

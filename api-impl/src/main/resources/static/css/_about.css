@@ -77,7 +77,6 @@
     }
 }
 .about_wrapper .content_wrapper .main_content_wrapper_box .my_story_title {
-    font-size: 2rem;
     padding-bottom: 0.4rem;
     display: inline-block;
     position: relative;
@@ -116,9 +115,8 @@
 }
 .btn-gradient {
     border: none;
-    padding: 0.4rem 0.8rem;
+    padding: 0.2rem 0.6rem;
     border-radius: 8px;
-    font-size: 1.3rem;
     color: black;
     background-image: linear-gradient(150deg, #7a46f3 0%, #3f78e0 45%, #55aab9 100%);
 }

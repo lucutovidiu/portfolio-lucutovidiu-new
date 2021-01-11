@@ -15,6 +15,7 @@ public class EnvVariables {
     private String locationEmailed;
     private String urlForCrossOrigin;
     private String commaSeparatedNotSavedLocations;
+    private String jwtSecret;
 
     public boolean shouldLocationBeEmailed() {
         return locationEmailed.equals("true");

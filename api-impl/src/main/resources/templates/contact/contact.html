@@ -3,8 +3,7 @@
 <head lang="en">
     <title>Contact | Ovi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap4/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_navbar.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_contact.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_helper.css}"/>
@@ -17,59 +16,52 @@
 <div th:insert="shared/navbar :: navbar(${activePage})"></div>
 <div class="main_wrapper_contact">
     <div class="contact_form_main">
-        <div class="contact_form_wrapper">
+        <div class="contact_form_wrapper mt-5">
             <div class="row">
             </div>
-            <br/>
-            <h1 class="contact_form_title pb-2">
+            <h1 class="contact_form_title py-2">
                 Contact <span style="color:#01c851">Me</span>
             </h1>
-            <br/>
-            <br/>
-            <div class="pt-4" style="padding:0">
+            <div class="pt-2" style="padding:0">
                 <form id="contactForm" class="container-fluid">
-                    <div class="group input-custom">
-                        <input id="senderName" type="text" required placeholder="Your Name"/>
-                        <span class="bar"></span>
+                    <div class="group input-custom mt-medium">
+                        <input class="form-control"  id="senderName" type="text" required placeholder="Your Name"/>
                         <!--                            <label>Name</label>-->
                     </div>
-                    <div class="group input-custom">
-                        <input id="senderEmail" type="email" required placeholder="Your Email"/>
-                        <span class="bar"/>
+                    <div class="group input-custom mt-medium">
+                        <input class="form-control"  id="senderEmail" type="email" required placeholder="Your Email"/>
                         <!--                            <label>Email</label>-->
                     </div>
                     <textarea
                             id="senderMessage"
-                            class="input_text_area"
+                            class="input_text_area form-control"
                             rows="4"
                             style="width:100%"
                             placeholder="Message"
                             required></textarea>
 
-                    <br/>
-                    <br/>
                     <div class="submit-wrapper">
-                        <button id="contactFormSubmit" class="btn btn-success" type="submit">Send Msg</button>
+                        <button id="contactFormSubmit" class="btn btn-success mt-4 mb-2" type="submit">Send Msg</button>
                     </div>
-                    <br/>
-                    <div id="loading" class="loading noDisplay" >
+                    <div id="loading" class="loading noDisplay mt-3">
                         <i class="fas fa-spinner fa-spin fa-2x"></i>
                     </div>
-                    <div id="errorMsg" class="errorMsg noDisplay">
+                    <div id="errorMsg" class="errorMsg noDisplay mt-3">
                         <p>Server Error please try again...</p>
                     </div>
-                    <div id="successMsg" class="successMsg noDisplay">
+                    <div id="successMsg" class="successMsg noDisplay mt-3">
                         <p>Message sent successfully.</p>
                     </div>
                 </form>
             </div>
-            <br/>
-            <br/>
         </div>
     </div>
 </div>
 <div th:insert="shared/footer :: footer"></div>
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/contact.js}"></script>
+<script th:src="@{/js/shared/PostResponse.js}"></script>
+<script th:src="@{/js/bootstrap4/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap4/bootstrap.min.js}"></script>
 </body>
 </html>

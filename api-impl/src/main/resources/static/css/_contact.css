@@ -23,10 +23,11 @@
     max-width: 40%;
     margin: 0 auto;
     background-color: rgba(92, 87, 87, 0.788);
+    padding: 1.5rem 2rem;
 }
 .contact_form_wrapper .contact_form_title {
     text-transform: uppercase;
-    font-size: 2rem;
+    font-size: 1.4rem;
     text-align: center;
     font-family: "Lato";
     color: #e4dede;

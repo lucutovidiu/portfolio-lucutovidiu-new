@@ -2,11 +2,11 @@ package com.lucutovidiu.models;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,5 +21,10 @@ public class User extends BaseEntity {
     @NotBlank
     private String password;
     @NotBlank
-    private String role;
+    private List<UserRole> roles;
+    private String gender;
+    private Boolean isAccountNonExpired;
+    private Boolean isAccountNonLocked;
+    private Boolean isCredentialsNonExpired;
+    private Boolean isEnabled;
 }

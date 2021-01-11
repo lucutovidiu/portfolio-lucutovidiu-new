@@ -20,5 +20,6 @@ env:
   locationEmailed: ${EMAIL_CLIENT_LOCATION}
   urlForCrossOrigin: ${URL_FOR_CROSS_ORIGIN:localhost}
   commaSeparatedNotSavedLocations: ${COMMA_SEPARATED_NOT_SAVED_LOCATIONS}
+  jwtSecret: ${JWT_SECRET}
 server:
   port: ${PORT:8080}

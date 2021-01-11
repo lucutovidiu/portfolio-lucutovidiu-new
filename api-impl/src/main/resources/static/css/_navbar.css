@@ -46,15 +46,6 @@
 .navBar_mobile_menu .navBar_mobile_hidden_menu a {
     text-decoration: none;
 }
-.navBar_mobile_menu .navBar_mobile_hidden_menu li {
-    padding-top: 20px;
-}
-.navBar_mobile_menu .navBar_mobile_hidden_menu .a-button {
-    text-decoration: none;
-    font-size: 1.4rem;
-    color: #9e9b9b;
-    margin: -0.8rem;
-}
 @media screen and (max-width: 728px) {
     .navBar_mobile_menu {
         display: block;
@@ -75,7 +66,8 @@
     color: #b9b9b9;
     padding-left: 1rem;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.2rem;
+    line-height: 60px;
 }
 @media screen and (max-width: 728px) {
     .navBar_desktop_menu {
@@ -87,8 +79,8 @@
         padding: 0;
         margin: 0;
         list-style: none;
-        font-size: 1.4rem;
-        line-height: 60px;
+        font-size: 1.2rem;
+        /*line-height: 60px;*/
     }
     .navBar_desktop_menu .navBar_items_list {
         float: right;
@@ -103,5 +95,6 @@
     .navBar_desktop_menu li a {
         text-decoration: none;
         font-family: monospace;
+        font-size: 1.2rem;
     }
 }

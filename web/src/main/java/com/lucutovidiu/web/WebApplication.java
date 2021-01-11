@@ -14,4 +14,19 @@ public class WebApplication {
         SpringApplication.run(WebApplication.class, args);
     }
 
+//    @EventListener(ApplicationReadyEvent.class)
+//    public void doSomethingAfterStartup() {
+//        User user = new User();
+//        user.setUserName("");
+//        user.setUserEmail("");
+//        user.setPassword(");
+//        user.setRoles(Arrays.asList(UserRole.ADMIN, UserRole.USER, UserRole.BUSINESS_ADMIN));
+//        user.setGender("male");
+//        user.setIsAccountNonExpired(true);
+//        user.setIsAccountNonLocked(true);
+//        user.setIsCredentialsNonExpired(true);
+//        user.setIsEnabled(true);
+//        userRepository.save(user);
+//    }
+
 }

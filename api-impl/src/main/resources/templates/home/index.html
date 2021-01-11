@@ -4,8 +4,7 @@
     <title>Welcome to Ovi's portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_index.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap4/bootstrap.min.css}"/>>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_footer.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_helper.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_navbar.css}"/>
@@ -16,10 +15,10 @@
 <body>
 <div class="landing_page_wrapper pointerCursor">
     <div class="landing_page_content_wrapper centerText container-fluid">
-        <h1 class="landing_page_h1">Welcome To My Portfolio Website</h1>
-        <p class="landing_page_p1">I hope you are going to enjoy it</p>
-        <p class="landing_page_p2">Get Started</p>
-        <div class="landing_page_arrow_down">
+        <div class="h5">Welcome To My Portfolio Website</div>
+        <div class="fs-6 pt-1">I hope you are going to enjoy it</div>
+        <div class="fs-6 pt-1">Get Started</div>
+        <div class="landing_page_arrow_down h4 pt-3">
             <span class="getstartedtbn fas fa-arrow-alt-circle-down"></span>
         </div>
     </div>
@@ -27,6 +26,7 @@
 <div id="section1"></div>
 <br/>
 <div th:insert="shared/navbar :: navbar(${activePage})"></div>
+<div th:insert="shared/navbar-mobile :: navbar-mobile"></div>
 <div th:insert="home/landingpage :: landingpage"></div>
 <div th:insert="home/howthissitewasbuilt :: howthissitewasbuilt"></div>
 <div th:insert="shared/footer :: footer"></div>

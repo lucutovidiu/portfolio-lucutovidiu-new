@@ -4,42 +4,29 @@ $(document).ready(function () {
         event.preventDefault();
         if ($("#contactForm")[0].checkValidity()) {
             $("#loading").removeClass("noDisplay");
-            sendMsg();
+            postRequest('/api/email/contact', {
+                "senderName": $('#senderName').val(),
+                "senderEmail": $('#senderEmail').val(),
+                "senderMessage": $('#senderMessage').val()
+            });
         }
     });
-    /*
-    $.post("/api/email/contact", {"senderName": "ovi","senderEmail":"lucut_ovidiu@yahoo.com", "senderMessage":"msg"}, function (data, status){
-               console.log(`${data} and status ${status}`);
-            });
-     */
 });
 
-function sendMsg() {
-    $.ajax({
-        url: '/api/email/contact',
-        dataType: 'json',
-        type: 'post',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            "senderName": $('#senderName').val(),
-            "senderEmail": $('#senderEmail').val(),
-            "senderMessage": $('#senderMessage').val()
-        }),
-        processData: false,
-        success: function (data, status, jQxhr) {
-            $("#loading").addClass("noDisplay");
-            if (data) {
-                $("#successMsg").removeClass("noDisplay");
-            } else {
-                $("#errorMsg").removeClass("noDisplay");
-            }
-            clearMessages();
-        },
-        error: function (data, textStatus, errorThrown) {
-            $("#loading").addClass("noDisplay");
-            clearMessages();
-            console.log(errorThrown);
+function postRequest(url, msg) {
+    postJsonRequest(url, msg).then(successResponse => {
+        $("#loading").addClass("noDisplay");
+        if (successResponse.data) {
+            $("#successMsg").removeClass("noDisplay");
+        } else {
+            $("#errorMsg").removeClass("noDisplay");
         }
+        clearMessages();
+    }, errorResponse => {
+        console.log(errorResponse.errorThrown);
+        $("#loading").addClass("noDisplay");
+        $("#errorMsg").removeClass("noDisplay");
+        clearMessages();
     });
 }
 
