@@ -41,4 +41,12 @@ public class EmailServiceImpl implements EmailService {
             sendEmail(envVariables.getDefaultGmailEmail(), new String[]{envVariables.getDefaultYahooEmail()},
                     "New Visit from: " + location.getCountry_name(), location.toString());
     }
+
+    @Override
+    public void sendExpiredProductsEmail() {
+        if (envVariables.shouldExpiredProductsBeEmailed()) {
+            sendEmail(envVariables.getDefaultGmailEmail(), new String[]{envVariables.getDefaultYahooEmail()},
+                    "Expired Products Email", "this is just for test");
+        }
+    }
 }

@@ -16,6 +16,7 @@ public class EnvVariables {
     private String urlForCrossOrigin;
     private String commaSeparatedNotSavedLocations;
     private String jwtSecret;
+    private String emailExpiredProducts;
 
     public boolean shouldLocationBeEmailed() {
         return locationEmailed.equals("true");
@@ -30,5 +31,9 @@ public class EnvVariables {
             }
         }
         return true;
+    }
+
+    public boolean shouldExpiredProductsBeEmailed() {
+        return emailExpiredProducts.equals("true");
     }
 }

@@ -9,4 +9,6 @@ public interface EmailService {
     boolean sendEmail(String from, String[] to, String subject, String body);
 
     void sendLocationEmail(Location location);
+
+    void sendExpiredProductsEmail();
 }
