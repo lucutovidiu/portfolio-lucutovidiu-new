@@ -5,11 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap4/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_navbar.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/_portfolios.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/_main-style.css}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+<div class="main_wrapper">
+    <div class="main_wrapper_port m-0 p-0"></div>
+    <div class="portfolios_card_wrapper mb-0 p-3">
+        <div th:each="upcomingPortfolio: ${upcomingPortfolios}">
+            <div th:insert="portfolios/upcoming-projects :: upcoming-projects(${upcomingPortfolio})"></div>
+        </div>
+        <div th:each="portfolio: ${portfolios}">
+            <div th:insert="portfolios/project-card :: project-card(${portfolio})"></div>
+        </div>
+        <!--            <span class="sr-only">Loading...</span>-->
+    </div>
+</div>
 <div th:insert="shared/navbar :: navbar(${activePage})"></div>
 <div th:insert="shared/navbar-mobile :: navbar-mobile(${activePage})"></div>
 <script th:src="@{/js/jquery.min.js}"></script>

@@ -1,6 +1,6 @@
 package com.lucutovidiu.security;
 
-import com.lucutovidiu.models.User;
+import com.lucutovidiu.models.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,18 +12,18 @@ import java.util.stream.Collectors;
 @Service
 public class CustomUserDetails implements UserDetails {
 
-    private User user;
+    private UserEntity userEntity;
 
     public CustomUserDetails() {
     }
 
-    public CustomUserDetails(User user) {
-        this.user = user;
+    public CustomUserDetails(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return user.getRoles()
+        return userEntity.getRoles()
                 .stream()
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getLabel()))
                 .collect(Collectors.toList());
@@ -31,31 +31,31 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return userEntity.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getUserEmail();
+        return userEntity.getUserEmail();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return user.getIsAccountNonExpired();
+        return userEntity.getIsAccountNonExpired();
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return user.getIsAccountNonLocked();
+        return userEntity.getIsAccountNonLocked();
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return user.getIsCredentialsNonExpired();
+        return userEntity.getIsCredentialsNonExpired();
     }
 
     @Override
     public boolean isEnabled() {
-        return user.getIsEnabled();
+        return userEntity.getIsEnabled();
     }
 }

@@ -1,6 +1,6 @@
 package com.lucutovidiu.mongo;
 
-import com.lucutovidiu.models.User;
+import com.lucutovidiu.models.UserEntity;
 import com.lucutovidiu.repos.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +16,12 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public List<User> getAllUsers() {
+    public List<UserEntity> getAllUsers() {
         return userRepository.findAll();
     }
 
     @Override
-    public Optional<User> getByUserNameOrUserEmail(String user) {
+    public Optional<UserEntity> getByUserNameOrUserEmail(String user) {
         return userRepository.findByUserNameOrUserEmail(user, user);
     }
 }

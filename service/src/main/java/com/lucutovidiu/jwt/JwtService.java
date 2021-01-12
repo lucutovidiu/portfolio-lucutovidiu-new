@@ -10,7 +10,7 @@ public interface JwtService {
 
     String generateToken(UserDetails userDetails);
 
-    Boolean validateToken(String token, UserDetails userDetails);
-
     String extractUsername(String token);
+
+    Boolean validateToken(String token, UserDetails userDetails);
 }

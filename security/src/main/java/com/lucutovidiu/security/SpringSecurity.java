@@ -42,7 +42,7 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                         "/login",
                         "/api/email/contact",
                         "/api/login",
-                        "/portfolios")
+                        "/portfolio/**")
                 .permitAll()
                 .and()
 
@@ -63,9 +63,7 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .cors()
 
-                .and()
-                .logout()
-                .permitAll();
+        ;
         //@formatter:off
 //                .logoutUrl("/logout")
 //                .deleteCookies("JSESSIONID")

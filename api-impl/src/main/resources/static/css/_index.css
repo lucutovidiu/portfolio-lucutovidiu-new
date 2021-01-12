@@ -52,7 +52,7 @@ html {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   text-align: center;
-  font-family: "Hand Writing";
+  font-family: "Hand Writing", serif;
   color: #B5B9B9;
 }
 .landing_page_p2 {

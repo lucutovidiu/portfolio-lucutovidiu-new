@@ -6,7 +6,7 @@
         <a href="/">
             <span th:style="${activePage == 'HOME' ? 'color:#3498db' : 'color:#b9b9b9'}">Home</span></a></li>
     <li>
-        <a href="/portfolios">
+        <a href="/portfolio/all">
             <span th:style="${activePage == 'PORTFOLIOS' ? 'color:#3498db' : 'color:#b9b9b9'}">Portfolios</span></a>
     </li>
     <li sec:authorize="hasRole('ADMIN')">

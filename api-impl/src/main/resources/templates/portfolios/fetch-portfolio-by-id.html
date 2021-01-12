@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div class="container-fluid bg-light portfolio_wrapper">
+    <div class="mt-3 portfolio_carosel">
+        <!--        {portfolioData && <Carosel src={portfolioData.moreImages}></Carosel>}-->
+        Carousel HERE
+    </div>
+    <div class="container">
+        <div class="portfolio_detail">
+            <div class="portfolio_detail_title">{portfolioData.title}</div>
+            <div class="portfolio_detail_fullDescription">
+                <p class="lead font-weight-bold">Full Description</p>
+                <div th:utext="${portfolioData.fullDescription}"></div>
+            </div>
+            <div class="portfolio_detail_techUsed">
+                <p class="lead font-weight-bold">Tech Used</p>
+                <span th:text="${portfolioData.technologiesUsed}"></span>
+            </div>
+            <div class="portfolio_detail_start_dates">
+                <p class="lead font-weight-bold">
+                    Duration Weeks
+                    <!--                    :{" "}-->
+                    <!--                    {moment(portfolioData.projectEndDate).diff(-->
+                    <!--                    moment(portfolioData.projectStartDate),-->
+                    <!--                    "weeks"-->
+                    <!--                    )}{" "}-->
+                </p>
+                <div>
+                    <span class="font-weight-bold">From</span>
+                    <span th:text="${portfolioData.projectStartDate}"></span>
+                    <!--                    {moment(portfolioData.projectStartDate).format("MMM Do YY")}-->
+                    <span class="font-weight-bold">To</span>
+                    <span th:text="${portfolioData.projectEndDate}"></span>
+                    <!--                    {moment(portfolioData.projectEndDate).format("MMM Do YY")}-->
+                </div>
+                <div class="portfolio_detail_techUsed">
+                    <p class="lead font-weight-bold">
+                        Live website link:{" "}
+                        <a class="btn btn-light"
+                           target="_blank"
+                           th:href="${portfolioData.httpAccessLink}" th:text="@{${portfolioData.title} Live}">
+                        </a>
+                    </p>
+                </div>
+                )}
+                <div class="portfolio_detail_techUsed">
+                    <p class="lead font-weight-bold">
+                        Github link
+                        <a
+                                class="btn btn-light"
+                                target="_blank"
+                                th:href={portfolioData.repoLink}
+                                th:text="@{${portfolioData.title} Github}">
+                        </a>
+                    </p>
+                </div>
+                <br/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

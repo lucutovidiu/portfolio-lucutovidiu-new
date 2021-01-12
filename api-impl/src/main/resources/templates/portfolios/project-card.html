@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--../static/img/portfolios/Printer_Management_Webapp_1567512970675/thumbImg/loginpage_1567512970630.JPG-->
+<body>
+<div th:fragment="project-card(portfolio)">
+    <div class="col portfolio_landing_page_wrapper mt-4">
+        <div class="row">
+            <div class="col-md-5 portfolio_landing_page_card_wrapper bg-light p-3">
+                <img th:alt="${portfolio.title}" th:src="${portfolio.thumbImage}"
+                     class="portfolio_landing_page_card_img"/>
+            </div>
+            <div class="col-md-7 portfolio_landing_page_card_details p-4">
+                <div class="portfolio_landing_page_card_details_title">
+                    <h5 class="portfolios_title" th:text="${portfolio.title}"></h5>
+                    <div class="portfolio_landing_page_card_details_minidescription">
+                        <ul>
+                            <li>
+                                <span style="font-weight: bold">Short Description: </span>
+                                <span th:text="${portfolio.shortDescription}"></span>
+                            </li>
+                            <li>
+                                <span style="font-weight: bold">Technologies Used: </span>
+                                <span th:text="${portfolio.technologiesUsed}"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="portfolio_landing_page_card_details_moreinfobtn">
+                        <a target="_blank" th:href="@{/portfolio/__${portfolio.id}__}">
+                            <button class="btn btn-primary">More Info</button>
+                        </a>
+                        <a sec:authorize="hasRole('ADMIN')" target="_blank"
+                           th:href="@{/edit-portfolio/__${portfolio.id}__}">
+                            <button class="btn btn-primary">Edit</button>
+                        </a>
+                        <button sec:authorize="hasRole('ADMIN')" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

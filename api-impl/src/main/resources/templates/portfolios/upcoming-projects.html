@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="upcoming-projects(upcomingPortfolio)">
+    <div class="portfolio_landing_page_wrapper mt-4">
+        <div>
+            <div class="col-md-12 portfolio_landing_page_card_details p-4">
+                <div class="portfolio_landing_page_card_details_title">
+                    <h5 class="portfolios_title" th:text="${upcomingPortfolio.title}"></h5>
+                    <div class="portfolio_landing_page_card_details_minidescription">
+                        <ul>
+                            <li>
+                                <span style="font-weight: bold">Short Description: </span>
+                                <span th:text="${upcomingPortfolio.shortDescription}"></span>
+                            </li>
+                            <li>
+                                <span style="font-weight: bold">Tech Used: </span>
+                                <span th:text="${upcomingPortfolio.technologiesUsed}"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="portfolio_landing_page_card_details_moreinfobtn">
+                        <a target="_blank" th:href="${upcomingPortfolio.httpAccessLink}">
+                            <button class="btn btn-primary">Visit Website</button>
+                        </a>
+                        <a target="_blank" th:href="${upcomingPortfolio.repoLink}">
+                            <button class="btn btn-primary">Visit Repo</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

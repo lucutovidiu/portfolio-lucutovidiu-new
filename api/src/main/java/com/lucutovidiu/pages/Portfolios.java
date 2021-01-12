@@ -6,9 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/portfolios")
+@RequestMapping("/portfolio")
 public interface Portfolios {
 
-    @GetMapping
+    @GetMapping("/all")
     String getPortfolios(Model model);
+
+    @GetMapping("/{id}")
+    String getPortfolioById(Model model);
 }

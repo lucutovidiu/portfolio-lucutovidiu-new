@@ -1,0 +1,43 @@
+body, ::after, ::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: "Lato Black";
+    src: url("/fonts/Lato-Black.ttf");
+}
+@font-face {
+    font-family: "Mina";
+    src: url("/fonts/Mina-Bold.ttf");
+}
+@font-face {
+    font-family: "Hand Writing";
+    src: url("/fonts/JustAnotherHand-Regular.ttf");
+}
+body::-webkit-scrollbar {
+    width: 15px;
+    background-color: #cec5c5;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: #5f5d5d;
+}
+.main_wrapper__AA {
+    position: relative;
+    background: #485461 radial-gradient(circle closest-corner at center, rgba(34, 34, 34, 0.918), black 70%) no-repeat;
+    min-height: 100vh;
+}
+
+.mina-font {
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
+    font-family: "Mina", serif;
+}
+
+.main_wrapper__AA .portfolios_title {
+    margin: 0;
+    padding: 80px 0 0 0;
+    color: #8f8e8e;
+    font-family: "Mina", serif;
+    text-align: center;
+}

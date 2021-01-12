@@ -1,0 +1,70 @@
+.main_wrapper {
+    background-color: white;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+.main_wrapper_port {
+    height: 90vh;
+    position: relative;
+    background: url("../img/portfolios-landing.jpg") no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    clip-path: polygon(50% 0%, 100% 0, 100% 61%, 61% 81%, 21% 100%, 0 94%, 0 0);
+}
+.portfolios_title {
+    text-shadow: 1px 2px 10px #8f8e8e;
+    text-align: center;
+    font-family: "Hand Writing", serif;
+    font-size: 2.5rem;
+}
+.portfolios_card_wrapper {
+    position: absolute;
+    top: 45px;
+    width: 80%;
+    min-height: 90vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    padding: 0px;
+    border-radius: 0;
+}
+.portfolio_landing_page_wrapper {
+    border-radius: 30px;
+    border: 1px solid #2b2929;
+    overflow: hidden;
+    box-shadow: 0px 4px 13px -2px #2b2929;
+}
+.portfolio_landing_page_wrapper .portfolio_landing_page_card_wrapper .portfolio_landing_page_card_img {
+    width: 97%;
+}
+.portfolio_landing_page_wrapper .portfolio_landing_page_card_details {
+    border-left: 2px solid #2b2929;
+    background-color: #cfcfcf;
+}
+@media all and (max-width: 767px) {
+    .portfolio_landing_page_wrapper .portfolio_landing_page_card_details {
+        border-top: 2px solid #2b2929;
+        border-left: none;
+    }
+}
+.portfolio_landing_page_wrapper .portfolio_landing_page_card_details_minidescription {
+    padding: 0 1rem;
+    text-indent: 1rem;
+    text-align: justify;
+}
+.portfolio_landing_page_wrapper .portfolio_landing_page_card_details_minidescription ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.portfolio_landing_page_wrapper .portfolio_landing_page_card_details_minidescription ul li {
+    padding-top: 0.8rem;
+}
+.portfolio_landing_page_wrapper .portfolio_landing_page_card_details_moreinfobtn {
+    padding-top: 0.9rem;
+    text-align: center;
+}
+.portfolio_landing_page_wrapper .portfolio_landing_page_card_details_moreinfobtn button {
+    margin-left: 0.5rem;
+}

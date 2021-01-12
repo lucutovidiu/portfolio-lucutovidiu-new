@@ -1,6 +1,6 @@
 package com.lucutovidiu.security;
 
-import com.lucutovidiu.models.User;
+import com.lucutovidiu.models.UserEntity;
 import com.lucutovidiu.mongo.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String user) throws UsernameNotFoundException {
-        Optional<User> repoUser = userService.getByUserNameOrUserEmail(user);
+        Optional<UserEntity> repoUser = userService.getByUserNameOrUserEmail(user);
         if (repoUser.isPresent()) {
             return new CustomUserDetails(repoUser.get());
         } else throw new UsernameNotFoundException("UserName or Password is incorrect!");

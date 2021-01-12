@@ -1,6 +1,6 @@
 package com.lucutovidiu.mongo;
 
-import com.lucutovidiu.models.UserMessage;
+import com.lucutovidiu.models.UserMessageEntity;
 import com.lucutovidiu.pojo.ContactRequest;
 import com.lucutovidiu.repos.UserMessageRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,17 +16,17 @@ public class UserMessageServiceImpl implements UserMessageService {
     private final UserMessageRepository userMessageRepository;
 
     @Override
-    public List<UserMessage> getUserMessages() {
+    public List<UserMessageEntity> getUserMessages() {
         return userMessageRepository.findAll();
     }
 
     @Override
-    public UserMessage saveUserMessage(ContactRequest contactRequest) {
-        UserMessage userMessage = new UserMessage();
-        userMessage.setLocation(contactRequest.getLocation());
-        userMessage.setSenderName(contactRequest.getSenderName());
-        userMessage.setSenderEmail(contactRequest.getSenderEmail());
-        userMessage.setSenderMessage(contactRequest.getSenderMessage());
-        return userMessageRepository.save(userMessage);
+    public UserMessageEntity saveUserMessage(ContactRequest contactRequest) {
+        UserMessageEntity userMessageEntity = new UserMessageEntity();
+        userMessageEntity.setLocation(contactRequest.getLocation());
+        userMessageEntity.setSenderName(contactRequest.getSenderName());
+        userMessageEntity.setSenderEmail(contactRequest.getSenderEmail());
+        userMessageEntity.setSenderMessage(contactRequest.getSenderMessage());
+        return userMessageRepository.save(userMessageEntity);
     }
 }

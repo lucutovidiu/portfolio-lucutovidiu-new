@@ -1,7 +1,7 @@
 package com.lucutovidiu.mongo;
 
 import com.lucutovidiu.ip.Location;
-import com.lucutovidiu.models.UserVisit;
+import com.lucutovidiu.models.UserVisitEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public interface UserVisitService {
 
-    List<UserVisit> getUserVisits();
+    List<UserVisitEntity> getUserVisits();
 
-    UserVisit saveVisit(Location location);
+    UserVisitEntity saveVisit(Location location);
 }
