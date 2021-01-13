@@ -2,7 +2,7 @@ $(document).ready(function () {
     // Add smooth scrolling to all links
     $("#contactFormSubmit").on('click', function (event) {
         event.preventDefault();
-        if ($("#contactForm")[0].checkValidity()) {
+        if ($("#contact-form")[0].checkValidity()) {
             $("#loading").removeClass("noDisplay");
             postRequest('/api/email/contact', {
                 "senderName": $('#senderName').val(),

@@ -6,7 +6,7 @@
     width: 100vw;
     font-family: monospace;
 }
-@media screen and (max-width: 728px) {
+@media screen and (max-width: 792px) {
     .navBar_wrapper {
         display: none;
     }
@@ -57,7 +57,7 @@
         cursor: pointer;
     }
 }
-@media screen and (min-width: 728px) {
+@media screen and (min-width: 793px) {
     .navBar_wrapper {
         background-color: rgba(19, 19, 17, 0.9);
     }
@@ -78,7 +78,7 @@
     font-size: 1.2rem;
     line-height: 60px;
 }
-@media screen and (min-width: 728px) {
+@media screen and (min-width: 793px) {
     .navBar_desktop_menu {
         padding: 0;
         margin: 0;

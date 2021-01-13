@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="shared/fragments/main :: bootstrap-head"></head>
+<head th:replace="shared/fragments/main :: fonts-head"></head>
+<head th:replace="shared/fragments/navbar/navbar :: navbar-head"></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Settings Page</title>
+</head>
+<body>
+<div th:insert="shared/fragments/navbar/navbar :: navbar(${activePage})"></div>
+<div th:insert="shared/fragments/navbar/navbar :: navbar-mobile(${activePage})"></div>
+<br/>
+<br/>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 mt-3">
+            <a sec:authorize="hasRole('ADMIN')" class="badge badge-info px-3 py-2" href="/add-new-portfolio"><span>Add Portfolio</span></a>
+        </div>
+        <div class="col-md-8 offset-md-2 mt-3">
+            <a sec:authorize="hasRole('ADMIN')" class="badge badge-info px-3 py-2" href="/api/get-portfolio-data"><span>Download Portfolio data</span></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

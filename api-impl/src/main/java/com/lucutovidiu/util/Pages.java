@@ -7,4 +7,5 @@ public class Pages {
     public static String ABOUT = "ABOUT";
     public static String LOGIN = "LOGIN";
     public static String ADDNEWPORTFOLIO = "ADDNEWPORTFOLIO";
+    public static String SETTINGS = "SETTINGS";
 }

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="shared/fragments/main :: bootstrap-head"></head>
+<head th:replace="shared/fragments/main :: fonts-head"></head>
+<head th:replace="shared/fragments/navbar/navbar :: navbar-head"></head>
+<head th:replace="shared/fragments/footer/footer :: footer-head"></head>
 <head lang="en">
     <title>About | Ovi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap4/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/_navbar.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_about.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/_footer.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_helper.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_main-style.css}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"/>
@@ -14,8 +15,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<div th:insert="shared/navbar :: navbar(${activePage})"></div>
-<div th:insert="shared/navbar-mobile :: navbar-mobile(${activePage})"></div>
+<div th:insert="shared/fragments/navbar/navbar :: navbar(${activePage})"></div>
+<div th:insert="shared/fragments/navbar/navbar :: navbar-mobile(${activePage})"></div>
 <div class="about_wrapper">
     <div class="container-fluid">
         <div class="content_wrapper">
@@ -89,8 +90,6 @@
         </div>
     </div>
 </div>
-<script th:src="@{/js/jquery.min.js}"></script>
-<script th:src="@{/js/navbar/navbar.js}"></script>
-<div th:insert="shared/footer :: footer"></div>
+<div th:insert="shared/fragments/footer/footer :: footer"></div>
 </body>
 </html>

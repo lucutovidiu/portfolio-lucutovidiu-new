@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="shared/fragments/main :: bootstrap-head"></head>
+<head th:replace="shared/fragments/main :: fonts-head"></head>
+<head th:replace="shared/fragments/navbar/navbar :: navbar-head"></head>
+<head th:replace="shared/fragments/footer/footer :: footer-head"></head>
+<head th:replace="shared/fragments/loading-component :: loading-head"></head>
 <head lang="en">
     <title>Contact | Ovi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap4/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/_navbar.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_contact.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_helper.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/_footer.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_main-style.css}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<div th:insert="shared/navbar :: navbar(${activePage})"></div>
-<div th:insert="shared/navbar-mobile :: navbar-mobile(${activePage})"></div>
+<div th:insert="shared/fragments/navbar/navbar :: navbar(${activePage})"></div>
+<div th:insert="shared/fragments/navbar/navbar :: navbar-mobile(${activePage})"></div>
 <div class="main_wrapper_contact">
     <div class="contact_form_main">
         <div class="contact_form_wrapper mt-5">
@@ -23,13 +23,13 @@
                 Contact <span style="color:#01c851">Me</span>
             </h1>
             <div class="pt-2" style="padding:0">
-                <form id="contactForm" class="container-fluid">
+                <form id="contact-form" class="container-fluid">
                     <div class="group input-custom mt-medium">
-                        <input class="form-control"  id="senderName" type="text" required placeholder="Your Name"/>
+                        <input class="form-control" id="senderName" type="text" required placeholder="Your Name"/>
                         <!--                            <label>Name</label>-->
                     </div>
                     <div class="group input-custom mt-medium">
-                        <input class="form-control"  id="senderEmail" type="email" required placeholder="Your Email"/>
+                        <input class="form-control" id="senderEmail" type="email" required placeholder="Your Email"/>
                         <!--                            <label>Email</label>-->
                     </div>
                     <textarea
@@ -43,26 +43,14 @@
                     <div class="submit-wrapper">
                         <button id="contactFormSubmit" class="btn btn-success mt-4 mb-2" type="submit">Send Msg</button>
                     </div>
-                    <div id="loading" class="loading noDisplay mt-3">
-                        <i class="fas fa-spinner fa-spin fa-2x"></i>
-                    </div>
-                    <div id="errorMsg" class="errorMsg noDisplay mt-3">
-                        <p>Server Error please try again...</p>
-                    </div>
-                    <div id="successMsg" class="successMsg noDisplay mt-3">
-                        <p>Message sent successfully.</p>
-                    </div>
+                    <div th:include="shared/fragments/loading-component :: loading-component(@{'Server Error please try again...'},@{'Message sent successfully.'})"></div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<div th:insert="shared/footer :: footer"></div>
-<script th:src="@{/js/jquery.min.js}"></script>
+<div th:insert="shared/fragments/footer/footer :: footer"></div>
 <script th:src="@{/js/contact.js}"></script>
 <script th:src="@{/js/shared/PostResponse.js}"></script>
-<script th:src="@{/js/bootstrap4/popper.min.js}"></script>
-<script th:src="@{/js/bootstrap4/bootstrap.min.js}"></script>
-<script th:src="@{/js/navbar/navbar.js}"></script>
 </body>
 </html>

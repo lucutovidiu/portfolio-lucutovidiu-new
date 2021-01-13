@@ -41,3 +41,7 @@ body::-webkit-scrollbar-thumb {
     font-family: "Mina", serif;
     text-align: center;
 }
+
+.border-custom {
+    border: 2px solid red;
+}

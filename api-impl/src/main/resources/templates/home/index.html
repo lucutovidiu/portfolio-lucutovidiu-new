@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="shared/fragments/main :: bootstrap-head"></head>
+<head th:replace="shared/fragments/main :: fonts-head"></head>
+<head th:replace="shared/fragments/navbar/navbar :: navbar-head"></head>
+<head th:replace="shared/fragments/footer/footer :: footer-head"></head>
 <head lang="en">
     <meta charSet="utf-8"/>
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/>
@@ -7,10 +11,7 @@
     <title>Welcome to Ovi's portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_index.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap4/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/_footer.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_helper.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/_navbar.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_main-style.css}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
@@ -28,13 +29,11 @@
 </div>
 <div id="section1"></div>
 <br/>
-<div th:insert="shared/navbar :: navbar(${activePage})"></div>
-<div th:insert="shared/navbar-mobile :: navbar-mobile(${activePage})"></div>
+<div th:insert="shared/fragments/navbar/navbar :: navbar(${activePage})"></div>
+<div th:insert="shared/fragments/navbar/navbar :: navbar-mobile(${activePage})"></div>
 <div th:insert="home/landingpage :: landingpage"></div>
 <div th:insert="home/howthissitewasbuilt :: howthissitewasbuilt"></div>
-<div th:insert="shared/footer :: footer"></div>
-<script th:src="@{/js/jquery.min.js}"></script>
-<script th:src="@{/js/navbar/navbar.js}"></script>
+<div th:insert="shared/fragments/footer/footer :: footer"></div>
 <script th:src="@{/js/index.js}"></script>
 </body>
 </html>

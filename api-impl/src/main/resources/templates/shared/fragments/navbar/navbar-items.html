@@ -10,8 +10,8 @@
             <span th:style="${activePage == 'PORTFOLIOS' ? 'color:#3498db' : 'color:#b9b9b9'}">Portfolios</span></a>
     </li>
     <li sec:authorize="hasRole('ADMIN')">
-        <a id="newPortfolio" href="/add-new-portfolio">
-            <span th:style="${activePage == 'ADDNEWPORTFOLIO' ? 'color:#3498db' : 'color:#b9b9b9'}">New Portfolio</span></a>
+        <a id="newPortfolio" href="/settings">
+            <span th:style="${activePage == 'SETTINGS' ? 'color:#3498db' : 'color:#b9b9b9'}">Settings</span></a>
     </li>
     <li>
         <a href="/contact">

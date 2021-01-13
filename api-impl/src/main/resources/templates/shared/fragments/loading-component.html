@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="loading-head">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/_helper.css}"/>
+</head>
+<body>
+<div th:fragment="loading-component(errorMsg, successMsg)">
+    <div id="loading" class="loading noDisplay mt-3">
+        <i class="fas fa-spinner fa-spin fa-2x"></i>
+    </div>
+    <div id="errorMsg" class="errorMsg noDisplay mt-3">
+        <p th:text="${errorMsg}"></p>
+    </div>
+    <div id="successMsg" class="successMsg noDisplay mt-3">
+        <p th:text="${successMsg}"></p>
+    </div>
+</div>
+</body>
+</html>

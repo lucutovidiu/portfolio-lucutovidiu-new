@@ -12,6 +12,6 @@ public class AddNewPortfolioImpl implements AddNewPortfolio {
     @Override
     public String getCreateNewPortfolio(Model model) {
         model.addAttribute(ActivePage, ADDNEWPORTFOLIO);
-        return "portfolios/createnewportfolio";
+        return "portfolios/new-portfolio/create-new-portfolio";
     }
 }

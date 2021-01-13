@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="navbar-head">
+    <meta charset="UTF-8">
+    <script th:src="@{/js/navbar/navbar.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/_navbar.css}"/>
+</head>
+<body>
+<div th:fragment="navbar(activePage)">
+    <nav class="navBar_wrapper">
+        <ul class="navBar_desktop_menu">
+            <li class="navBar_desktop_logo">Ovidiu Lucut</li>
+            <span class="navBar_items_list">
+                <div th:insert="shared/fragments/navbar/navbar-items :: navbar-items(${activePage})"></div>
+          </span>
+        </ul>
+    </nav>
+</div>
+<div th:fragment="navbar-mobile(activePage)">
+    <div class="navbar-mobile-main-wrapper">
+        <div id="navbar-menu-btn" class="navBar_mobile_menu-btn">MENU &nbsp;<span
+                class="hand fas fa-hand-point-left"></span></div>
+        <div id="navbar-mobile-items-hidden-menu" class="navBar_mobile_menu navbar-mobile-items-hidden">
+            <ul class="navbar-mobile-items">
+                <div th:insert="shared/fragments/navbar/navbar-items :: navbar-items(${activePage})"></div>
+                <span id="navbar-back-btn" class="fas fa-long-arrow-alt-left"> Back</span>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
