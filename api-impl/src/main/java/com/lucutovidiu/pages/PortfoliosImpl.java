@@ -27,7 +27,8 @@ public class PortfoliosImpl implements Portfolios {
     }
 
     @Override
-    public String getPortfolioById(Model model) {
+    public String getPortfolioById(String id, Model model) {
+        model.addAttribute(PortfolioData, portfolioService.getPortfolioById(id).orElse(null));
         return "portfolios/fetch-portfolio-by-id";
     }
 }

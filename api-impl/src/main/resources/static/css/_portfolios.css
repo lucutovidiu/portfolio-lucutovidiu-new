@@ -29,6 +29,13 @@
     padding: 0px;
     border-radius: 0;
 }
+
+@media all and (max-width: 500px) {
+    .portfolios_card_wrapper {
+        width: 98%;
+    }
+}
+
 .portfolio_landing_page_wrapper {
     border-radius: 30px;
     border: 1px solid #2b2929;
@@ -58,13 +65,7 @@
     margin: 0;
     list-style: none;
 }
-.portfolio_landing_page_wrapper .portfolio_landing_page_card_details_minidescription ul li {
-    padding-top: 0.8rem;
-}
-.portfolio_landing_page_wrapper .portfolio_landing_page_card_details_moreinfobtn {
-    padding-top: 0.9rem;
+
+.portfolio_landing_page_card_details_moreinfobtn {
     text-align: center;
-}
-.portfolio_landing_page_wrapper .portfolio_landing_page_card_details_moreinfobtn button {
-    margin-left: 0.5rem;
 }

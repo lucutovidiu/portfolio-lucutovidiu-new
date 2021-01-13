@@ -1,6 +1,7 @@
 package com.lucutovidiu.models;
 
 import com.lucutovidiu.pojo.ImageDescription;
+import com.lucutovidiu.pojo.Portfolio;
 import com.lucutovidiu.pojo.PortfolioBasic;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,13 +36,31 @@ public class PortfolioEntity extends BaseEntity {
     private String repoLink;
     private String rootDirectory;
 
-    public PortfolioBasic toPortfolio() {
+    public PortfolioBasic toPortfolioBasic() {
         return PortfolioBasic.builder()
                 .id(getId())
                 .title(title)
                 .thumbImage(thumbImage)
                 .shortDescription(shortDescription)
                 .technologiesUsed(technologiesUsed)
+                .build();
+    }
+
+    public Portfolio toPortfolio() {
+        return Portfolio.builder()
+                .id(getId())
+                .title(title)
+                .thumbImage(thumbImage)
+                .shortDescription(shortDescription)
+                .technologiesUsed(technologiesUsed)
+                .moreImages(moreImages)
+                .fullDescription(fullDescription)
+                //Jan 19th 20 !!! can't get it like this
+                .projectStartDate(projectStartDate)
+                .projectEndDate(projectEndDate)
+                .httpAccessLink(httpAccessLink)
+                .repoLink(repoLink)
+                .rootDirectory(rootDirectory)
                 .build();
     }
 }

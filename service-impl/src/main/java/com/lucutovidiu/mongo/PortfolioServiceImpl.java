@@ -1,6 +1,7 @@
 package com.lucutovidiu.mongo;
 
 import com.lucutovidiu.models.PortfolioEntity;
+import com.lucutovidiu.pojo.Portfolio;
 import com.lucutovidiu.pojo.PortfolioBasic;
 import com.lucutovidiu.repos.PortfolioRepository;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -19,7 +21,12 @@ public class PortfolioServiceImpl implements PortfolioService {
     @Override
     public List<PortfolioBasic> getAllPortfolios() {
         return portfolioRepository.findAll().stream()
-                .map(PortfolioEntity::toPortfolio)
+                .map(PortfolioEntity::toPortfolioBasic)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<Portfolio> getPortfolioById(String id) {
+        return portfolioRepository.findById(id).map(PortfolioEntity::toPortfolio);
     }
 }

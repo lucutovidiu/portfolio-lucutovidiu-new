@@ -23,13 +23,15 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="portfolio_landing_page_card_details_moreinfobtn">
-                        <a target="_blank" th:href="${upcomingPortfolio.httpAccessLink}">
-                            <button class="btn btn-primary">Visit Website</button>
-                        </a>
-                        <a target="_blank" th:href="${upcomingPortfolio.repoLink}">
-                            <button class="btn btn-primary">Visit Repo</button>
-                        </a>
+                    <div class="row">
+                        <div class="col-sm-12 text-center mt-2">
+                            <a target="_blank" th:href="${upcomingPortfolio.httpAccessLink}">
+                                <button class="btn btn-primary mt-2">Visit Website</button>
+                            </a>
+                            <a target="_blank" th:href="${upcomingPortfolio.repoLink}">
+                                <button class="btn btn-primary mt-2">Visit Repo</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
