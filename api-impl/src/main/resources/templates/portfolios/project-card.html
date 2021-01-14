@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!--../static/img/portfolios/Printer_Management_Webapp_1567512970675/thumbImg/loginpage_1567512970630.JPG-->
+<head th:fragment="project-card-head">
+    <script th:src="@{/js/shared/portfolio-operations.js}"></script>
+    <script th:src="@{/js/portfolio/project-card.js}"></script>
+</head>
 <body>
 <div th:fragment="project-card(portfolio)">
     <div class="col portfolio_landing_page_wrapper mt-4">
@@ -32,7 +36,7 @@
                            th:href="@{/edit-portfolio/__${portfolio.id}__}">
                             <button class="btn btn-primary">Edit</button>
                         </a>
-                        <button sec:authorize="hasRole('ADMIN')" class="btn btn-danger">Delete</button>
+                        <button type="button" th:onclick="deletePortfolio([[${portfolio.id}]])" sec:authorize="hasRole('ADMIN')" class="btn btn-danger deletePortfolio">Delete</button>
                     </div>
                 </div>
             </div>

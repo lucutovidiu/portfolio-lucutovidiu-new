@@ -14,6 +14,10 @@ spring:
   data:
     mongodb:
       uri: ${MONGO_DB_URI}
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 50MB
 env:
   defaultGmailEmail: ${DEFAULT_GMAIL_EMAIL_ADDRESS}
   defaultYahooEmail: ${DEFAULT_YAHOO_EMAIL_ADDRESS}

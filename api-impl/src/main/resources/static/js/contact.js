@@ -1,8 +1,9 @@
 $(document).ready(function () {
     // Add smooth scrolling to all links
     $("#contactFormSubmit").on('click', function (event) {
-        event.preventDefault();
         if ($("#contact-form")[0].checkValidity()) {
+            event.preventDefault();
+            $("#contactFormSubmit").prop("disabled", true);
             $("#loading").removeClass("noDisplay");
             postRequest('/api/email/contact', {
                 "senderName": $('#senderName').val(),
@@ -35,6 +36,7 @@ function clearMessages() {
         $("#loading").addClass("noDisplay");
         $("#successMsg").addClass("noDisplay");
         $("#errorMsg").addClass("noDisplay");
+        $("#contactFormSubmit").prop("disabled", false);
         $("#senderName").val("");
         $("#senderEmail").val("");
         $("#senderMessage").val("");
