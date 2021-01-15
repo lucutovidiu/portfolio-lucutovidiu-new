@@ -5,13 +5,14 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/_main-style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_portfolio_id.css}"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap"/>
+    <title>Welcome to this Portfolio</title>
 </head>
 <body>
 <div class="container-fluid bg-light portfolio_wrapper">
     <br/>
     <div class="d-flex justify-content-center">
         <div class="portfolio_carosel">
-            <div th:include="portfolios/carousel :: carousel(${portfolioData.moreImages})"></div>
+            <div th:include="portfolios/carousel :: carousel(${portfolioData.moreImages},${portfolioData.rootDirectory})"></div>
         </div>
     </div>
     <div class="container">
@@ -48,5 +49,6 @@
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/bootstrap4/popper.min.js}"></script>
 <script th:src="@{/js/bootstrap4/bootstrap.min.js}"></script>
+<script th:src="@{/js/portfolio/portfolio-by-id.js}"></script>
 </body>
 </html>

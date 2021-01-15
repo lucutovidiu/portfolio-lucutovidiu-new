@@ -57,6 +57,7 @@ public class PortfolioEntity extends BaseEntity {
                 .thumbImage(thumbImage)
                 .shortDescription(shortDescription)
                 .technologiesUsed(technologiesUsed)
+                .rootDirectory(rootDirectory)
                 .build();
     }
 

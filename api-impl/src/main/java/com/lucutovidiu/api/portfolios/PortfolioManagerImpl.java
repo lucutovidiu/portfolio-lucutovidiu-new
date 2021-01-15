@@ -1,5 +1,7 @@
 package com.lucutovidiu.api.portfolios;
 
+import com.lucutovidiu.conversions.PhotoConversion;
+import com.lucutovidiu.conversions.pojo.PhotoSize;
 import com.lucutovidiu.mongo.PortfolioService;
 import com.lucutovidiu.pojo.Portfolio;
 import com.lucutovidiu.portfolio.*;
@@ -17,6 +19,7 @@ public class PortfolioManagerImpl implements PortfolioManager {
 
     private final PortfolioService portfolioService;
     private final PortfolioPhotoManager portfolioPhotoManager;
+    private final PhotoConversion photoConversion;
 
     @Override
     public NewPortfolioResponseDto postPortfolioData(NewPortfolioRequestDto newPortfolioRequest) {
@@ -36,11 +39,13 @@ public class PortfolioManagerImpl implements PortfolioManager {
                 .orElseThrow(() -> new BaseStructureCreationException("Portfolio id: " + portfolioId + " not found!"));
         switch (FileUploadTypes.valueOf(type)) {
             case THUMBNAIL:
-                String thumbImage = portfolioPhotoManager.saveThumbImage(file.getBytes(), file.getOriginalFilename(), portfolio.getRootDirectory());
+                byte[] imageToJpeg = photoConversion.convertAndScaleImageToJpeg(file.getBytes(), PhotoSize.getIdealThumbnailWidth());
+                String thumbImage = portfolioPhotoManager.saveThumbImage(imageToJpeg, portfolio.getRootDirectory());
                 portfolioService.updatePortfolioThumbnailImage(portfolioId, thumbImage);
                 break;
             case MORE_IMAGES:
-                String imageSrc = portfolioPhotoManager.savePortfolioImage(file.getBytes(), file.getContentType(), portfolio.getRootDirectory());
+                imageToJpeg = photoConversion.convertAndScaleImageToJpeg(file.getBytes(), PhotoSize.getIdealMediumWidth());
+                String imageSrc = portfolioPhotoManager.savePortfolioImage(imageToJpeg, portfolio.getRootDirectory());
                 portfolioService.addPortfolioMoreImages(portfolioId, imageSrc);
                 break;
             default:

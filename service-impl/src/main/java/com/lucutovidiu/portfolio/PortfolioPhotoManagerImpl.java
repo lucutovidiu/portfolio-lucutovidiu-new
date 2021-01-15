@@ -12,10 +12,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+import static com.lucutovidiu.portfolio.FileUploadTypes.THUMBNAIL;
+
 @Component
 @Slf4j
 public class PortfolioPhotoManagerImpl implements PortfolioPhotoManager {
-    public static final String THUMB_IMG = "thumb-img";
     private static final String OUTPUT_DIR_BASE = "api-impl/src/main/resources/static".replaceAll("/", File.separator);
     private static final String WEB_BROWSER_PATH_BASE = "/img/portfolios".replaceAll("/", File.separator);
     private static final String PORTFOLIO_IMAGES_BASE = OUTPUT_DIR_BASE + WEB_BROWSER_PATH_BASE;
@@ -26,29 +27,49 @@ public class PortfolioPhotoManagerImpl implements PortfolioPhotoManager {
         String slug = generatePortfolioBaseDirName(portfolioTitle, portfolioId);
         String baseDir = PORTFOLIO_IMAGES_BASE + File.separator + slug;
         createDirectory(Paths.get(baseDir));
-        String thumbImgDir = baseDir + File.separator + THUMB_IMG;
+        String thumbImgDir = baseDir + File.separator + THUMBNAIL;
         createDirectory(Paths.get(thumbImgDir));
-        return baseDir;
+        return slug;
     }
 
     @Override
     public boolean removePortfolioPhotoBaseDir(String rootDir) {
-        return removeFileRecursively(rootDir);
+        return removeFileRecursively(PORTFOLIO_IMAGES_BASE + File.separator + rootDir);
     }
 
     @Override
-    public String saveThumbImage(byte[] image, String fileName, String rootDir) {
-        String getThumbPath = rootDir + File.separator + THUMB_IMG + File.separator + fileName;
+    public String saveThumbImage(byte[] image, String rootDir) {
+        String generatedImageName = generateImageName();
+        String getThumbPath = PORTFOLIO_IMAGES_BASE + File.separator + rootDir + File.separator + THUMBNAIL + File.separator + generatedImageName;
         writeImageToDisk(getThumbPath, image);
-        return getThumbPath.replace(OUTPUT_DIR_BASE, "");
+        return generatedImageName;
     }
 
     @Override
-    public String savePortfolioImage(byte[] image, String contentType, String rootDir) {
-        String generatedImageName = UUID.randomUUID().toString().replaceAll("-", "");
-        String getThumbPath = rootDir + File.separator + generatedImageName + "." + tryGetContentType(contentType);
+    public String savePortfolioImage(byte[] image, String rootDir) {
+        String generatedImageName = generateImageName();
+        String getThumbPath = PORTFOLIO_IMAGES_BASE + File.separator + rootDir + File.separator + generatedImageName;
         writeImageToDisk(getThumbPath, image);
-        return getThumbPath.replace(OUTPUT_DIR_BASE, "");
+        return generatedImageName;
+    }
+
+    private String generateImageName() {
+        return UUID.randomUUID().toString().replaceAll("-", "") + ".jpeg";
+    }
+
+    @Override
+    public byte[] getImageFromLocalDir(String rootDir, String imgType, String imageName) {
+        try {
+            Path imagePath;
+            if (FileUploadTypes.valueOf(imgType) == THUMBNAIL) {
+                imagePath = Paths.get(PORTFOLIO_IMAGES_BASE + File.separator + rootDir + File.separator + THUMBNAIL.toString() + File.separator + imageName);
+            } else {
+                imagePath = Paths.get(PORTFOLIO_IMAGES_BASE + File.separator + rootDir + File.separator + imageName);
+            }
+            return Files.readAllBytes(imagePath);
+        } catch (IOException e) {
+            return new byte[0];
+        }
     }
 
     private boolean removeFileRecursively(String fileName) {
@@ -58,12 +79,6 @@ public class PortfolioPhotoManagerImpl implements PortfolioPhotoManager {
             log.error(e.getMessage());
             throw new BaseStructureCreationException(String.format("Couldn't remove file path: %s", fileName));
         }
-    }
-
-    private String tryGetContentType(String contentType) {
-        String[] typeContent = contentType.split("/");
-        if (typeContent.length > 0) return typeContent[1];
-        throw new BaseStructureCreationException(String.format("Image Format Error: %s", contentType));
     }
 
     private void writeImageToDisk(String imagePath, byte[] image) {

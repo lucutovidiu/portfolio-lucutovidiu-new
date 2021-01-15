@@ -13,4 +13,5 @@ public class PortfolioBasic {
     private String thumbImage;
     private String shortDescription;
     private String technologiesUsed;
+    private String rootDirectory;
 }

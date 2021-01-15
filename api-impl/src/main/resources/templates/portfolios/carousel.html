@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-</head>
 <body>
-<div th:fragment="carousel(images)">
+<div th:fragment="carousel(images, rootDirectory)">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li th:each="str,iterStat : ${images}" data-target="#carouselExampleIndicators"
@@ -12,7 +10,9 @@
         <div class="carousel-inner">
             <div th:each="image, index : ${images}"
                  th:class="${index.count} == '1' ? 'carousel-item active' : 'carousel-item'">
-                <img class="d-block w-100" th:src="${image.imageSrc}" th:alt="${image.imageDescription}">
+                <img class="d-block w-100 carousel-image"
+                     th:src="${'/api/img/'+rootDirectory+'/MORE_IMAGES/'+image.imageSrc}"
+                     th:alt="${image.imageDescription}">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

@@ -9,7 +9,9 @@ public interface PortfolioPhotoManager {
 
     boolean removePortfolioPhotoBaseDir(String rootDir);
 
-    String saveThumbImage(byte[] image, String fileName, String rootDir);
+    String saveThumbImage(byte[] image, String rootDir);
 
-    String savePortfolioImage(byte[] image, String contentType, String rootDir);
+    String savePortfolioImage(byte[] image, String rootDir);
+
+    byte[] getImageFromLocalDir(String rootDir, String imgType, String imageName);
 }
