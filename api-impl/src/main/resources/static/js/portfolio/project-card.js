@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    $(".deletePortfolio").on('click', () => {
-    })
 })
 
 async function deletePortfolio(portfolioId) {
