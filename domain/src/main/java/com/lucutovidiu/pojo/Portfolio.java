@@ -5,7 +5,6 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -23,13 +22,5 @@ public class Portfolio extends PortfolioBasic {
 
     public long getProjectDuration() {
         return ChronoUnit.WEEKS.between(projectStartDate, projectEndDate);
-    }
-
-    public String getProjectStartDate() {
-        return projectStartDate.format(DateTimeFormatter.ofPattern("dd-MMM-yy"));
-    }
-
-    public String getProjectEndDate() {
-        return projectEndDate.format(DateTimeFormatter.ofPattern("dd-MMM-yy"));
     }
 }

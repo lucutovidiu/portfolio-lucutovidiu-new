@@ -18,6 +18,10 @@ public interface PortfolioManager {
     @PreAuthorize("hasRole('ADMIN')")
     NewPortfolioResponseDto postPortfolioData(@RequestBody @Valid NewPortfolioRequestDto newPortfolioRequest);
 
+    @PostMapping("/edit-portfolio")
+    @PreAuthorize("hasRole('ADMIN')")
+    NewPortfolioResponseDto editPortfolio(@RequestBody @Valid NewPortfolioRequestDto newPortfolioRequest);
+
     @PostMapping(value = "/upload-file/type/{type}/portfolio-id/{portfolioId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('ADMIN')")
     NewPortfolioResponseDto postFile(@RequestParam("file") MultipartFile file, @PathVariable String type, @PathVariable String portfolioId) throws IOException;

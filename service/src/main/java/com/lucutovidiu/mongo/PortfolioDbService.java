@@ -9,9 +9,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public interface PortfolioService {
+public interface PortfolioDbService {
 
     List<PortfolioBasic> getAllPortfolios();
+
+    List<Portfolio> getAllPortfoliosFull();
 
     Optional<Portfolio> getPortfolioById(String id);
 
@@ -22,4 +24,6 @@ public interface PortfolioService {
     void updatePortfolioThumbnailImage(String portfolioId, String thumbnailImage);
 
     void addPortfolioMoreImages(String portfolioId, String imageSrc);
+
+    void editExistingPortfolio(NewPortfolioRequestDto newPortfolioRequest);
 }

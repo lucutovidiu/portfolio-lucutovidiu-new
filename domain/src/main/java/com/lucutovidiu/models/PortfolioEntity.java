@@ -50,6 +50,18 @@ public class PortfolioEntity extends BaseEntity {
         return entity;
     }
 
+    public PortfolioEntity update(NewPortfolioRequestDto dto) {
+        title = dto.getTitle();
+        shortDescription = dto.getShortDescription();
+        technologiesUsed = dto.getTechnologiesUsed();
+        fullDescription = dto.getFullDescription();
+        projectStartDate = dto.getProjectStartDate();
+        projectEndDate = dto.getProjectEndDate();
+        httpAccessLink = dto.getHttpAccessLink();
+        repoLink = dto.getRepoLink();
+        return this;
+    }
+
     public PortfolioBasic toPortfolioBasic() {
         return PortfolioBasic.builder()
                 .id(getId())
@@ -70,7 +82,6 @@ public class PortfolioEntity extends BaseEntity {
                 .technologiesUsed(technologiesUsed)
                 .moreImages(moreImages)
                 .fullDescription(fullDescription)
-                //Jan 19th 20 !!! can't get it like this
                 .projectStartDate(projectStartDate)
                 .projectEndDate(projectEndDate)
                 .httpAccessLink(httpAccessLink)

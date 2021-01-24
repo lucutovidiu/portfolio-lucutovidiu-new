@@ -2,7 +2,7 @@ package com.lucutovidiu.api.portfolios;
 
 import com.lucutovidiu.conversions.PhotoConversion;
 import com.lucutovidiu.conversions.pojo.PhotoSize;
-import com.lucutovidiu.mongo.PortfolioService;
+import com.lucutovidiu.mongo.PortfolioDbService;
 import com.lucutovidiu.pojo.Portfolio;
 import com.lucutovidiu.portfolio.*;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -17,8 +18,8 @@ import java.util.UUID;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class PortfolioManagerImpl implements PortfolioManager {
 
-    private final PortfolioService portfolioService;
-    private final PortfolioPhotoManager portfolioPhotoManager;
+    private final PortfolioDbService portfolioDbService;
+    private final PortfolioPhotoStorageService portfolioPhotoStorageService;
     private final PhotoConversion photoConversion;
 
     @Override
@@ -26,27 +27,37 @@ public class PortfolioManagerImpl implements PortfolioManager {
         if (newPortfolioRequest.getProjectStartDate() == null || newPortfolioRequest.getProjectEndDate() == null)
             throw new DateIncorrectException("Project data incorrect!!");
         String generatedId = generateDBId();
-        String rootDirectory = portfolioPhotoManager.createPortfolioPhotoBaseDir(newPortfolioRequest.getTitle(), generatedId);
+        String rootDirectory = portfolioPhotoStorageService.createPortfolioPhotoBaseDir(newPortfolioRequest.getTitle(), generatedId);
         newPortfolioRequest.setId(generatedId);
         newPortfolioRequest.setRootDirectory(rootDirectory);
-        portfolioService.createPortfolioStructure(newPortfolioRequest);
+        portfolioDbService.createPortfolioStructure(newPortfolioRequest);
         return new NewPortfolioResponseDto(generatedId, true);
     }
 
     @Override
+    public NewPortfolioResponseDto editPortfolio(NewPortfolioRequestDto newPortfolioRequest) {
+        return editExistingPortfolio(newPortfolioRequest);
+    }
+
+    private NewPortfolioResponseDto editExistingPortfolio(NewPortfolioRequestDto newPortfolioRequest) {
+        portfolioDbService.editExistingPortfolio(newPortfolioRequest);
+        return new NewPortfolioResponseDto(newPortfolioRequest.getId(), true);
+    }
+
+    @Override
     public NewPortfolioResponseDto postFile(MultipartFile file, String type, String portfolioId) throws IOException {
-        Portfolio portfolio = portfolioService.getPortfolioById(portfolioId)
+        Portfolio portfolio = portfolioDbService.getPortfolioById(portfolioId)
                 .orElseThrow(() -> new BaseStructureCreationException("Portfolio id: " + portfolioId + " not found!"));
         switch (FileUploadTypes.valueOf(type)) {
             case THUMBNAIL:
                 byte[] imageToJpeg = photoConversion.convertAndScaleImageToJpeg(file.getBytes(), PhotoSize.getIdealThumbnailWidth());
-                String thumbImage = portfolioPhotoManager.saveThumbImage(imageToJpeg, portfolio.getRootDirectory());
-                portfolioService.updatePortfolioThumbnailImage(portfolioId, thumbImage);
+                String thumbImage = portfolioPhotoStorageService.saveThumbImage(imageToJpeg, portfolio.getRootDirectory());
+                portfolioDbService.updatePortfolioThumbnailImage(portfolioId, thumbImage);
                 break;
             case MORE_IMAGES:
                 imageToJpeg = photoConversion.convertAndScaleImageToJpeg(file.getBytes(), PhotoSize.getIdealMediumWidth());
-                String imageSrc = portfolioPhotoManager.savePortfolioImage(imageToJpeg, portfolio.getRootDirectory());
-                portfolioService.addPortfolioMoreImages(portfolioId, imageSrc);
+                String imageSrc = portfolioPhotoStorageService.savePortfolioImage(imageToJpeg, portfolio.getRootDirectory());
+                portfolioDbService.addPortfolioMoreImages(portfolioId, imageSrc);
                 break;
             default:
                 throw new RuntimeException("Invalid type entered");
@@ -56,10 +67,10 @@ public class PortfolioManagerImpl implements PortfolioManager {
 
     @Override
     public boolean deletePortfolio(String portfolioId) {
-        Portfolio portfolio = portfolioService.getPortfolioById(portfolioId)
+        Portfolio portfolio = portfolioDbService.getPortfolioById(portfolioId)
                 .orElseThrow(() -> new BaseStructureCreationException("Portfolio id: " + portfolioId + " not found!"));
-        boolean hasPortfolioBeenDeleted = portfolioService.deletePortfolioStructure(portfolioId);
-        boolean pathDeleted = portfolioPhotoManager.removePortfolioPhotoBaseDir(portfolio.getRootDirectory());
+        boolean hasPortfolioBeenDeleted = portfolioDbService.deletePortfolioStructure(portfolioId);
+        boolean pathDeleted = portfolioPhotoStorageService.removePortfolioPhotoBaseDir(portfolio.getRootDirectory());
         return hasPortfolioBeenDeleted || pathDeleted;
     }
 

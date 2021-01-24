@@ -55,3 +55,7 @@
 .mt-medium{
     margin: 0.9rem 0;
 }
+
+.hand-pointer {
+    cursor: pointer;
+}

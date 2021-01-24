@@ -29,10 +29,10 @@
             <div class="portfolio_detail_start_dates">
                 <p class="font-weight-bold mt-3">
                     <span th:text="${'Duration of '+portfolioData.getProjectDuration+' weeks'}"></span>
-                    <span class="durationSpan">(From</span>
-                    <span class="durationSpan" th:text="${portfolioData.getProjectStartDate}"></span>
+                    <span class="durationSpan">From</span>
+                    <span id="projectStartDate" class="durationSpan" th:text="${portfolioData.getProjectStartDate}"></span>
                     <span class="durationSpan">To</span>
-                    <span class="durationSpan" th:text="${portfolioData.getProjectEndDate+')'}"></span>
+                    <span id="projectEndDate" class="durationSpan" th:text="${portfolioData.getProjectEndDate}"></span>
                 </p>
                 <span th:if="${portfolioData.httpAccessLink} != ''">
                     <a class="btn btn-info" target="_blank" th:href="${portfolioData.httpAccessLink}">Live website</a>
@@ -50,5 +50,6 @@
 <script th:src="@{/js/bootstrap4/popper.min.js}"></script>
 <script th:src="@{/js/bootstrap4/bootstrap.min.js}"></script>
 <script th:src="@{/js/portfolio/portfolio-by-id.js}"></script>
+<script th:src="@{/js/moment.min.js}"></script>
 </body>
 </html>

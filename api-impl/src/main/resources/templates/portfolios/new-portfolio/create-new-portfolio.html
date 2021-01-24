@@ -5,7 +5,7 @@
 <head th:replace="shared/fragments/loading-component :: loading-head"></head>
 <head th:replace="shared/fragments/main :: fonts-head"></head>
 <head lang="en">
-    <title>New Portfolios | Ovi</title>
+    <title>Portfolio Manager | Ovi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_main-style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_new-portfolio.css}"/>
@@ -18,32 +18,27 @@
 <div class="container jumbotron">
     <div class="row">
         <div class="col-md-8 offset-md-2 mt-3">
-            <div class="row">
-                <div class="col-md-4 d-flex justify-content-start align-items-center font-weight-bold">
-                    <div>Load portfolio from JSON</div>
-                </div>
-                <div class="col-md-3">
-                    <input accept="application/JSON" type="file" class="form-control-file" id="p-content-load">
-                </div>
-            </div>
             <br/>
             <form id="p-add-form" name=portfolioAddForm>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="title" placeholder="Portfolio Title" required>
+                    <input type="text" class="form-control" id="title" placeholder="Portfolio Title" required
+                           th:value="${portfolio?.title}"/>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" id="shortDescription" placeholder="Short Description"
-                           required>
+                           th:value="${portfolio?.shortDescription}" required/>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" id="technologiesUsed" placeholder="Technologies Used"
-                           required>
+                           required th:value="${portfolio?.technologiesUsed}"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="httpAccessLink" placeholder="Http access link" required>
+                    <input type="text" class="form-control" id="httpAccessLink" placeholder="Http access link"
+                           th:value="${portfolio?.httpAccessLink}"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="repoLink" placeholder="Repository link" required>
+                    <input type="text" class="form-control" id="repoLink" placeholder="Repository link"
+                           th:value="${portfolio?.repoLink}"/>
                 </div>
                 <br/>
                 <div class="row">
@@ -51,21 +46,22 @@
                         <div>Thumbnail Image</div>
                     </div>
                     <div class="col-md-3">
-                        <input accept="image/png, image/jpeg" type="file" class="form-control-file" id="thumbImage" required>
+                        <input accept="image/png, image/jpeg" type="file" class="form-control-file" id="thumbImage"/>
                     </div>
                 </div>
                 <br/>
                 <div class="form-group">
                     <textarea class="form-control" id="fullDescription"
                               placeholder="Full HTML Description"
-                              rows="7" required></textarea>
+                              rows="7" required th:text="${portfolio?.fullDescription}"></textarea>
                 </div>
                 <div class="row">
                     <div class="col-md-5 d-flex justify-content-start align-items-center font-weight-bold">
                         <div>Project Start Date</div>
                     </div>
                     <div class="col-md-4">
-                        <input class="form-control" data-date-format="yyyy-mm-dd" id="projectStartDate" required>
+                        <input class="form-control" data-date-format="yyyy-mm-dd" id="projectStartDate" required
+                               th:value="${portfolio?.projectStartDate}"/>
                     </div>
                 </div>
                 <br/>
@@ -74,7 +70,8 @@
                         <div>Project End Date</div>
                     </div>
                     <div class="col-md-4">
-                        <input class="form-control" data-date-format="yyyy-mm-dd" id="projectEndDate" required>
+                        <input class="form-control" data-date-format="yyyy-mm-dd" id="projectEndDate" required
+                               th:value="${portfolio?.projectEndDate}"/>
                     </div>
                 </div>
                 <br/>
@@ -84,7 +81,7 @@
                     </div>
                     <div class="col-md-3">
                         <input accept="image/png, image/jpeg" type="file" class="form-control-file" multiple
-                               id="moreImages" required>
+                               id="moreImages">
                     </div>
                 </div>
                 <button id="p-submit" class="btn btn-success mt-4 mb-2" type="submit">Submit Portfolio</button>
@@ -92,10 +89,14 @@
             <div th:include="shared/fragments/loading-component :: loading-component(@{'Error occured please try again...'},@{'Portfolio created successfully.'})"></div>
         </div>
     </div>
+    <div th:if="${editPortfolioMode}" class="noDisplay">
+        <input id="portfolioId" th:value="${portfolio?.id}"/>
+    </div>
 </div>
 <script th:src="@{/js/bootstrap4/bootstrap-datepicker.min.js}"></script>
 <script th:src="@{/js/new-portfolio/new-portfolio.js}"></script>
-<script th:src="@{/js/shared/portfolio-operations.js}"></script>
+<script th:src="@{/js/portfolio/portfolio-util.js}"></script>
 <script th:src="@{/js/shared/PostResponse.js}"></script>
+<script th:src="@{/js/moment.min.js}"></script>
 </body>
 </html>

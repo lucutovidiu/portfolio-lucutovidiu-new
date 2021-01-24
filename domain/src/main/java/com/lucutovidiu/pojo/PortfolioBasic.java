@@ -1,5 +1,6 @@
 package com.lucutovidiu.pojo;
 
+import com.lucutovidiu.util.SlugUtil;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
@@ -14,4 +15,10 @@ public class PortfolioBasic {
     private String shortDescription;
     private String technologiesUsed;
     private String rootDirectory;
+
+    public PortfolioBasic(){}
+
+    public String slugifyTitle() {
+        return SlugUtil.generateSlug(title);
+    }
 }

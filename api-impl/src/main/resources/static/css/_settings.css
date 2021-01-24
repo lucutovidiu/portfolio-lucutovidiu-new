@@ -1,0 +1,6 @@
+#alerts-pane {
+    position: absolute;
+    width: 50%;
+    bottom: 1rem;
+    left: 25%;
+}

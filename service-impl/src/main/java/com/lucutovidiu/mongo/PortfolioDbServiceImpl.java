@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class PortfolioServiceImpl implements PortfolioService {
+public class PortfolioDbServiceImpl implements PortfolioDbService {
 
     private final PortfolioRepository portfolioRepository;
 
@@ -24,6 +24,13 @@ public class PortfolioServiceImpl implements PortfolioService {
     public List<PortfolioBasic> getAllPortfolios() {
         return portfolioRepository.findAll().stream()
                 .map(PortfolioEntity::toPortfolioBasic)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Portfolio> getAllPortfoliosFull() {
+        return portfolioRepository.findAll().stream()
+                .map(PortfolioEntity::toPortfolio)
                 .collect(Collectors.toList());
     }
 
@@ -63,4 +70,12 @@ public class PortfolioServiceImpl implements PortfolioService {
                 }).ifPresent(portfolioRepository::save);
     }
 
+    @Override
+    public void editExistingPortfolio(NewPortfolioRequestDto newPortfolioRequest) {
+        portfolioRepository.findById(newPortfolioRequest.getId())
+                .map(entity -> {
+                    entity.update(newPortfolioRequest);
+                    return entity;
+                }).ifPresent(portfolioRepository::save);
+    }
 }
