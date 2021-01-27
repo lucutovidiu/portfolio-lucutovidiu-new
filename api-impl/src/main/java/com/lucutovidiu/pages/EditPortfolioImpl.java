@@ -1,7 +1,7 @@
 package com.lucutovidiu.pages;
 
 import com.lucutovidiu.mongo.PortfolioDbService;
-import com.lucutovidiu.dto.PortfolioDto;
+import com.lucutovidiu.portfolio.dto.PortfolioDto;
 import com.lucutovidiu.pages.exceptions.PortfolioException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

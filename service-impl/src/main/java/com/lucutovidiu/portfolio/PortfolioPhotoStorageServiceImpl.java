@@ -2,7 +2,7 @@ package com.lucutovidiu.portfolio;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lucutovidiu.conversions.util.ZipUtil;
-import com.lucutovidiu.dto.PortfolioDto;
+import com.lucutovidiu.portfolio.dto.PortfolioDto;
 import com.lucutovidiu.mongo.PortfolioDataRequestService;
 import com.lucutovidiu.pojo.ImageDescription;
 import com.lucutovidiu.pojo.Portfolio;

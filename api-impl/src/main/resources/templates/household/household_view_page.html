@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="shared/fragments/main :: bootstrap-head"></head>
+<head th:replace="shared/fragments/main :: fonts-head"></head>
+<head th:replace="shared/fragments/navbar/navbar :: navbar-head"></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Household</title>
+        <script th:src="@{/js/household/householdViewPage.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/_household.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/_helper.css}"/>
+</head>
+<body>
+<div th:insert="shared/fragments/navbar/navbar :: navbar(${activePage})"></div>
+<div th:insert="shared/fragments/navbar/navbar :: navbar-mobile(${activePage})"></div>
+<link rel="stylesheet" type="text/css" th:href="@{/js/bootstrap4/bootstrap-datepicker.min.css}"/>
+<div class="container household-main-wrapper">
+    <!-- Adauga grup nou BEGIN -->
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="h5">Vizualizeaza Grupuri si articole</div>
+        </div>
+    </div>
+    <!-- Adauga grup nou END -->
+
+    <!-- Adauga Articole BEGIN -->
+    <div class="container" th:each="householdGroup : ${householdGroups}">
+        <div class="row mt-3">
+            <div class="col-sm-12  col-md-5 offset-md-2">
+                <div class="h5">
+                    <span>Nume Grup: </span>
+                    <span th:text="${householdGroup.groupName}"></span>
+                    <span class="hand-pointer pl-2 text-danger" th:onclick="deleteGroup([[${householdGroup.id}]], [[${householdGroup.groupName}]])"><i class="fas fa-trash-alt"></i></span>
+                </div>
+                <div class="border-bottom border-secondary pb-2 mb-2 ml-3" th:each="householdItem : ${householdGroup.householdItems}">
+                    <div class="font-weight-bold">
+                        <span>Nume Articol: </span>
+                        <span th:text="${householdItem.itemName}"></span>
+                        <span class="hand-pointer pl-2 text-danger" th:onclick="deleteGroupItem([[${householdGroup.id}]],[[${householdItem.id}]],[[${householdItem.itemName}]],[[${householdGroup.groupName}]] )"><i class="fas fa-trash-alt"></i></span>
+                    </div>
+                    <div class="font-weight-bold">
+                        <span>Data Inceput: </span>
+                        <span th:text="${householdItem.itemStartFromDate}"></span>
+                    </div>
+                    <div class="font-weight-bold">
+                        <span>Data Expirare: </span>
+                        <span th:class="${householdItem.isExpirationDateDue ? 'text-danger':'text-success'}" th:text="${householdItem.itemExpirationDate}"></span>
+                    </div>
+                    <div class="font-weight-bold">
+                        <span>Mai multe Detalii: </span>
+                        <span th:text="${householdItem.moreInfo}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Adauga Articole END -->
+
+    <div id="alerts-pane"></div>
+</div>
+
+<script th:src="@{/js/bootstrap4/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/js/moment.min.js}"></script>
+<script th:src="@{/js/shared/DatePickerFormat.js}"></script>
+<script th:src="@{/js/shared/AlertsPane.js}"></script>
+</body>
+</html>

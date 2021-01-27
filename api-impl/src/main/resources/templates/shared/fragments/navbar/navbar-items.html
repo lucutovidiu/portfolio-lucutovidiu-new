@@ -9,7 +9,7 @@
         <a href="/portfolio/all">
             <span th:style="${activePage == 'PORTFOLIOS' ? 'color:#3498db' : 'color:#b9b9b9'}">Portfolios</span></a>
     </li>
-    <li sec:authorize="hasRole('ADMIN')">
+    <li sec:authorize="hasAnyRole('ADMIN', 'PRIVATE')">
         <a id="newPortfolio" href="/settings">
             <span th:style="${activePage == 'SETTINGS' ? 'color:#3498db' : 'color:#b9b9b9'}">Settings</span></a>
     </li>

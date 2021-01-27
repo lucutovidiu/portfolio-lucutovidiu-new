@@ -1,5 +1,5 @@
 async function deletePortfolio(portfolioId) {
-    let confirmation = confirm("Are you sure you want to delete portfolio id: " + portfolioId)
+    let confirmation = confirm("Are you sure you want to delete portfolio id: " + portfolioId);
     if (confirmation) {
         try {
             await deletePortfolioData(portfolioId);

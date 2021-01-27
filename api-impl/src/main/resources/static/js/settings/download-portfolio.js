@@ -43,14 +43,7 @@ function clearTempFiles() {
 }
 
 function createAlert(msg, classes) {
-    let alert = document.createElement("div");
-    alert.innerText = msg;
-    alert.setAttribute("class", classes);
-    alert.setAttribute("role", "alert");
-    document.getElementById("alerts-pane").append(alert);
-    setTimeout(() => {
-        document.getElementById("alerts-pane").removeChild(alert);
-    }, 5000);
+    displayAlert(msg, classes);
     $("#loading-panel").addClass("noDisplay");
 }
 

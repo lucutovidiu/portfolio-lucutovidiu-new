@@ -17,9 +17,11 @@
 <br/>
 <br/>
 <br/>
-<div class="container" sec:authorize="hasRole('ADMIN')">
+<div class="container">
     <div class="row">
-        <div class="col-md-8 offset-md-2 mt-3 border-bottom border-secondary pb-3">
+
+        <!--  Load portfolio from JSON BEGIN  -->
+        <div class="col-md-8 offset-md-2 mt-3 border-bottom border-secondary pb-3" sec:authorize="hasRole('ADMIN')">
             <div class="row col-12">
                 <form class="w-100" action="/add-new-portfolio" method="post" enctype="multipart/form-data">
                     <div class="row">
@@ -27,15 +29,6 @@
                             <div class="h5 font-weight-bold">Load portfolio from JSON</div>
                         </div>
                     </div>
-
-<!--
-                    <div class="col-md-12">
-                        <input accept="application/JSON" name="jsonProject" type="file" class="form-control-file"/>
-                        <button type="submit" class="btn btn-primary" name="submit">Load from json</button>
-                    </div>
--->
-
-
                     <div class="row mt-3">
                         <div class="col-12">
                             <div class="input-group mb-3">
@@ -46,7 +39,8 @@
                                         File</label>
                                 </div>
                                 <div class="input-group-append">
-                                    <button type="submit" class="input-group-text" name="submit">Upload JSON File</button>
+                                    <button type="submit" class="input-group-text" name="submit">Upload JSON File
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +48,10 @@
                 </form>
             </div>
         </div>
-        <div class="col-md-8 offset-md-2 mt-3 border-bottom border-secondary pb-3">
+        <!--  Load portfolio from JSON END  -->
+
+        <!--  Add New Portfolio JSON BEGIN  -->
+        <div class="col-md-8 offset-md-2 mt-3 border-bottom border-secondary pb-3" sec:authorize="hasRole('ADMIN')">
             <div class="row col-12">
                 <div class="h5 font-weight-bold">Add New Portfolio</div>
             </div>
@@ -63,7 +60,10 @@
                    href="/add-new-portfolio"><span>Go to Add Portfolio Page</span></a>
             </div>
         </div>
-        <div class="col-md-8 offset-md-2 mt-3 border-bottom border-secondary pb-3">
+        <!--  Add New Portfolio END  -->
+
+        <!--  Download Portfolios data BEGIN  -->
+        <div class="col-md-8 offset-md-2 mt-3 border-bottom border-secondary pb-3" sec:authorize="hasRole('ADMIN')">
             <div class="row col-12">
                 <div class="h5 font-weight-bold">Download Portfolios data</div>
             </div>
@@ -73,7 +73,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8 offset-md-2 mt-3 border-bottom border-secondary pb-3">
+        <!--  Download Portfolios data END  -->
+
+        <!--  Clear Portfolios zip cache data BEGIN  -->
+        <div class="col-md-8 offset-md-2 mt-3 border-bottom border-secondary pb-3" sec:authorize="hasRole('ADMIN')">
             <div class="row col-12">
                 <div class="h5 font-weight-bold">Clear Portfolios zip cache data (Temp folder)</div>
             </div>
@@ -83,9 +86,27 @@
                 </div>
             </div>
         </div>
+        <!--  Clear Portfolios zip cache data END  -->
+
+        <!--  Manage House BEGIN  -->
+        <div class="col-md-8 offset-md-2 mt-3 border-bottom border-secondary pb-3" sec:authorize="hasRole('PRIVATE')">
+            <div class="row col-12">
+                <div class="h5 font-weight-bold">Manage Household</div>
+            </div>
+            <div class="row col-12 mt-2">
+                <a class="badge badge-info px-3 py-2"
+                   href="/household"><span>Go To Household Managing Page</span></a>
+            </div>
+            <div class="row col-12 mt-2">
+                <a class="badge badge-info px-3 py-2"
+                   href="/household/view_page"><span>Go To Household View Page</span></a>
+            </div>
+        </div>
+        <!--  Manage House END  -->
         <div id="alerts-pane"></div>
     </div>
 </div>
 <script th:src="@{/js/settings/download-portfolio.js}"></script>
+<script th:src="@{/js/shared/AlertsPane.js}"></script>
 </body>
 </html>

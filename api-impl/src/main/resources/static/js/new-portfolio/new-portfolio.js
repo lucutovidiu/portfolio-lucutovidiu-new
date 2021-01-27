@@ -14,12 +14,6 @@ const uploadPortfolioThumbnailUrl = "/api/portfolio/upload-file/type/THUMBNAIL/p
 const uploadPortfolioMoreImagesUrl = "/api/portfolio/upload-file/type/MORE_IMAGES/portfolio-id/";
 const portfolioId = "portfolioId";
 const DONE = "DONE";
-const datePickerOptions = {
-    weekStart: 1,
-    daysOfWeekHighlighted: "6,0",
-    autoclose: true,
-    todayHighlight: true,
-}
 
 $(document).ready(function () {
     addDatePickerToDateInput("#" + projectStartDate);
@@ -200,18 +194,4 @@ function getFormDataInJsonFormat() {
         result[entry[0]] = entry[1];
     }
     return JSON.stringify(result);
-}
-
-function addDatePickerToDateInput(formId) {
-    $(formId).datepicker(datePickerOptions);
-    let defaultValue = $(formId).val();
-    $(formId).datepicker("setDate", formatDate(defaultValue));
-}
-
-function formatDate(date) {
-    let unformattedDate = date ? date : new Date();
-    let formattedDate = moment(unformattedDate).format("YYYY-MM-DD");
-    if (formattedDate === "Invalid date")
-        throw new Error("Invalid Date: " + date);
-    return formattedDate;
 }

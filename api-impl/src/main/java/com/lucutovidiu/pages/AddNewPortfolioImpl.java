@@ -1,7 +1,7 @@
 package com.lucutovidiu.pages;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lucutovidiu.dto.PortfolioDto;
+import com.lucutovidiu.portfolio.dto.PortfolioDto;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;

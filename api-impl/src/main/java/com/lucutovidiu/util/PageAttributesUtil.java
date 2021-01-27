@@ -7,4 +7,5 @@ public class PageAttributesUtil {
     public static String PortfolioData = "portfolioData";
     public static String UpcomingPortfolios = "upcomingPortfolios";
     public static String EditPortfolioMode = "editPortfolioMode";
+    public static String HouseholdGroups = "householdGroups";
 }
