@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Settings Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_helper.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/_settings.css}"/>
 </head>
@@ -103,6 +104,18 @@
             </div>
         </div>
         <!--  Manage House END  -->
+
+        <!--  Manage Users Page BEGIN  -->
+        <div class="col-md-8 offset-md-2 mt-3 border-bottom border-secondary pb-3" sec:authorize="hasRole('ADMIN')">
+            <div class="row col-12">
+                <div class="h5 font-weight-bold">Manage Users Page</div>
+            </div>
+            <div class="row col-12 mt-2">
+                <a class="badge badge-info px-3 py-2"
+                   href="/household"><span>Go To Managing Users Page</span></a>
+            </div>
+        </div>
+        <!--  Manage Users Page END  -->
         <div id="alerts-pane"></div>
     </div>
 </div>

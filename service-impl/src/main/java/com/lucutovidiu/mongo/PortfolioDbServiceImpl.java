@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,6 +24,7 @@ public class PortfolioDbServiceImpl implements PortfolioDbService {
     @Override
     public List<PortfolioBasic> getAllPortfolios() {
         return portfolioRepository.findAll().stream()
+                .sorted(Comparator.comparing(PortfolioEntity::getProjectStartDate).reversed())
                 .map(PortfolioEntity::toPortfolioBasic)
                 .collect(Collectors.toList());
     }

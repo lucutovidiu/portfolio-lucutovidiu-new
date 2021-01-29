@@ -26,7 +26,7 @@ public class EnvVariables {
         if (location == null) return false;
         String[] locations = commaSeparatedNotSavedLocations.split(",");
         for (String loc : locations) {
-            if (location.getCountry_name().equalsIgnoreCase(loc) || location.getCity().equalsIgnoreCase(loc)) {
+            if (loc.equalsIgnoreCase(location.getCountry_name()) || loc.equalsIgnoreCase(location.getCity())) {
                 return false;
             }
         }
