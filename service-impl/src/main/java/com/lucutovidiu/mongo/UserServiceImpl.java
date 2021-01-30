@@ -8,12 +8,17 @@ import com.lucutovidiu.users.dto.UserDto;
 import com.lucutovidiu.users.dto.UserRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static com.lucutovidiu.cache.CacheNames.*;
 
 @Component
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -23,6 +28,7 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
+    @Cacheable(value = GET_ALL_USERS)
     public List<UserBasicDto> getAllUsers() {
         return userRepository.findAll().stream()
                 .map(UserEntity::toUserBasicDto)
@@ -30,17 +36,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(value = USER_GET_BY_ID, key = "#user")
     public Optional<UserEntity> getByUserNameOrUserEmail(String user) {
         return userRepository.findByUserNameOrUserEmail(user, user);
     }
 
     @Override
+    @Caching(
+            evict = {
+                    @CacheEvict(value = USER_GET_BY_ID, allEntries = true),
+                    @CacheEvict(value = USER_GET_BY_ID_DTO, allEntries = true),
+                    @CacheEvict(value = GET_ALL_USERS, allEntries = true)
+            }
+    )
     public UserBasicDto saveUser(UserRequestDto userRequest) {
         userRequest.setPassword(getEncoredPassword(userRequest.getPassword()));
         return userRepository.save(UserEntity.convert(userRequest)).toUserBasicDto();
     }
 
     @Override
+    @Caching(
+            evict = {
+                    @CacheEvict(value = USER_GET_BY_ID, allEntries = true),
+                    @CacheEvict(value = USER_GET_BY_ID_DTO, allEntries = true),
+                    @CacheEvict(value = GET_ALL_USERS, allEntries = true)
+            }
+    )
     public boolean deleteUser(String userId) {
         UserEntity userEntity = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found!!!"));
         userRepository.delete(userEntity);
@@ -48,6 +69,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(value = USER_GET_BY_ID_DTO, key = "#userId")
     public UserDto getUserByUserId(String userId) {
         return userRepository.findById(userId)
                 .map(UserEntity::toUserDto)
@@ -55,6 +77,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Caching(
+            evict = {
+                    @CacheEvict(value = USER_GET_BY_ID, allEntries = true),
+                    @CacheEvict(value = USER_GET_BY_ID_DTO, allEntries = true)
+            }
+    )
     public boolean editUser(UserRequestDto userRequest) {
         userRequest.setPassword(getEncoredPassword(userRequest.getPassword()));
         userRepository.findById(userRequest.getId())

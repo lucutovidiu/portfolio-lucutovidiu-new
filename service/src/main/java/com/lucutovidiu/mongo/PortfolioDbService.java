@@ -3,6 +3,7 @@ package com.lucutovidiu.mongo;
 import com.lucutovidiu.pojo.Portfolio;
 import com.lucutovidiu.pojo.PortfolioBasic;
 import com.lucutovidiu.portfolio.NewPortfolioRequestDto;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
