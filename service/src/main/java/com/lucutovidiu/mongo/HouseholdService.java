@@ -13,9 +13,13 @@ public interface HouseholdService {
 
     List<HouseholdGroupDto> getGroups(String loggerUser);
 
+    List<HouseholdGroupDto> getAllGroups();
+
     boolean addItem(HouseholdItemRequestDto householdItemRequestDto);
 
     boolean deleteGroup(String groupId, String loggerUser);
 
     boolean deleteItemFromGroup(String itemId, String groupId);
+
+    void updateLastNotification(String groupId, String itemId);
 }

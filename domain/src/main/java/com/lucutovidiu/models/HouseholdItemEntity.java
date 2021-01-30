@@ -20,6 +20,8 @@ public class HouseholdItemEntity extends BaseEntity {
     @NotBlank
     private LocalDate itemExpirationDate;
     private String moreInfo;
+    private LocalDate lastNotificationSent;
+    private int notificationCount = 0;
 
     public static HouseholdItemEntity convert(HouseholdItemRequestDto dto) {
         HouseholdItemEntity entity = new HouseholdItemEntity();
@@ -37,6 +39,8 @@ public class HouseholdItemEntity extends BaseEntity {
         dto.setItemStartFromDate(itemStartFromDate);
         dto.setItemExpirationDate(itemExpirationDate);
         dto.setMoreInfo(moreInfo);
+        dto.setLastNotificationSent(lastNotificationSent);
+        dto.setNotificationCount(notificationCount);
         return dto;
     }
 

@@ -23,6 +23,7 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
 
     private final EnvVariables envVariables;
     private final CustomUserDetailsService customUserDetailsService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 //    private final JwtRequestFilter jwtRequestFilter;
 
     @Override
@@ -73,12 +74,7 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsService).passwordEncoder(encodePWD());
-    }
-
-    @Bean
-    public BCryptPasswordEncoder encodePWD() {
-        return new BCryptPasswordEncoder();
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override

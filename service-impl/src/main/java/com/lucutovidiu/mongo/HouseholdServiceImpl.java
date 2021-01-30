@@ -2,7 +2,6 @@ package com.lucutovidiu.mongo;
 
 import com.lucutovidiu.household.dto.*;
 import com.lucutovidiu.household.exceptions.HouseholdException;
-import com.lucutovidiu.household.exceptions.WrongUserDeletingGroupException;
 import com.lucutovidiu.models.HouseholdGroupEntity;
 import com.lucutovidiu.models.HouseholdItemEntity;
 import com.lucutovidiu.repos.HouseholdGroupRepository;
@@ -14,6 +13,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -51,18 +51,23 @@ public class HouseholdServiceImpl implements HouseholdService {
 
     @Override
     public List<HouseholdGroupOnlyDto> getGroupsOnly(String loggerUser) {
-        return householdGroupRepository.findAll().stream()
-                .filter(householdGroupEntity -> householdGroupEntity.getCreatedBy().equals(loggerUser))
+        return householdGroupRepository.findAllByCreatedBy(loggerUser).stream()
                 .map(HouseholdGroupEntity::toHouseholdGroupOnlyDto)
                 .collect(toList());
     }
 
     @Override
     public List<HouseholdGroupDto> getGroups(String loggerUser) {
-        return householdGroupRepository.findAll().stream()
-                .filter(householdGroupEntity -> householdGroupEntity.getCreatedBy().equals(loggerUser))
+        return householdGroupRepository.findAllByCreatedBy(loggerUser).stream()
                 .map(HouseholdGroupEntity::toHouseholdGroupDto)
                 .filter(householdGroupDto -> householdGroupDto.getHouseholdItems().size() > 0)
+                .collect(toList());
+    }
+
+    @Override
+    public List<HouseholdGroupDto> getAllGroups() {
+        return householdGroupRepository.findAll().stream()
+                .map(HouseholdGroupEntity::toHouseholdGroupDto)
                 .collect(toList());
     }
 
@@ -82,10 +87,9 @@ public class HouseholdServiceImpl implements HouseholdService {
 
     @Override
     public boolean deleteGroup(String groupId, String loggerUser) {
-        HouseholdGroupEntity groupEntity = householdGroupRepository.findById(groupId).orElseThrow(() -> new HouseholdException("Group not found"));
-        if (!groupEntity.getCreatedBy().equals(loggerUser)) {
-            throw new WrongUserDeletingGroupException("You don't have permission to delete group");
-        }
+        HouseholdGroupEntity groupEntity = householdGroupRepository
+                .findByIdAndCreatedBy(groupId, loggerUser)
+                .orElseThrow(() -> new HouseholdException("Group not found"));
         groupEntity.getHouseholdItems().forEach(this::deleteItems);
         householdGroupRepository.delete(groupEntity);
         return true;
@@ -99,6 +103,17 @@ public class HouseholdServiceImpl implements HouseholdService {
                 .findFirst()
                 .ifPresent(this::deleteItems);
         return true;
+    }
+
+    @Override
+    public void updateLastNotification(String groupId, String itemId) {
+        householdGroupRepository.findById(groupId).flatMap(group -> group.getHouseholdItems().stream().filter(item -> item.getId().equals(itemId))
+                .findFirst()
+                .map(householdItemEntity -> {
+                    householdItemEntity.setLastNotificationSent(LocalDate.now());
+                    householdItemEntity.setNotificationCount(householdItemEntity.getNotificationCount() + 1);
+                    return householdItemEntity;
+                })).ifPresent(householdItemRepository::save);
     }
 
     private void deleteItems(HouseholdItemEntity itemEntity) {

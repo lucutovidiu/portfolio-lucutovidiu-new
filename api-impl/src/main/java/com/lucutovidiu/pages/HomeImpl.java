@@ -1,5 +1,6 @@
 package com.lucutovidiu.pages;
 
+import com.lucutovidiu.expiredprod.ExpiredProducts;
 import com.lucutovidiu.ip.LocationService;
 import com.lucutovidiu.mongo.UserVisitService;
 import com.lucutovidiu.service.EmailService;
@@ -28,11 +29,13 @@ public class HomeImpl implements Home {
     private final EmailService emailService;
     private final UserVisitService userVisitService;
     private final EnvVariables envVariables;
+    private final ExpiredProducts expiredProducts;
 
     @Override
     public String getIndex(Model model, HttpServletRequest request) {
         model.addAttribute(ActivePage, HOME);
         saveUserVisitAndEmail();
+        expiredProducts.emailExpiredProducts();
         return "home/index";
     }
 

@@ -47,6 +47,7 @@ public class HouseholdGroupEntity extends BaseEntity {
         HouseholdGroupDto dto = new HouseholdGroupDto();
         dto.setId(getId());
         dto.setGroupName(groupName);
+        dto.setCreatedBy(createdBy);
         dto.setHouseholdItems(householdItems.stream()
                 .filter(householdItemEntity -> !Objects.isNull(householdItemEntity))
                 .map(HouseholdItemEntity::getHouseholdItemDto)

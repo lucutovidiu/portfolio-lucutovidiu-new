@@ -1,6 +1,6 @@
 const alertsPane = "alerts-pane";
 
-function displayAlert(msg, classes) {
+function displayAlert(msg, classes, timeout) {
     let alert = document.createElement("div");
     alert.innerText = msg;
     alert.setAttribute("class", classes);
@@ -8,5 +8,5 @@ function displayAlert(msg, classes) {
     document.getElementById(alertsPane).append(alert);
     setTimeout(() => {
         document.getElementById(alertsPane).removeChild(alert);
-    }, 1000);
+    }, timeout ? timeout : 1000);
 }

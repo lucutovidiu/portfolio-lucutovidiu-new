@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/settings")
-public interface Settings {
+@RequestMapping("/users")
+public interface Users {
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'PRIVATE')")
-    String getSettingsPage(Model model);
+    @PreAuthorize("hasRole('ADMIN')")
+    String addUser(Model model);
 }

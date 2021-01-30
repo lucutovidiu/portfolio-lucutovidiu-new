@@ -9,7 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 
 @Component
 @Slf4j
@@ -35,6 +39,21 @@ public class EmailServiceImpl implements EmailService {
         return true;
     }
 
+    public void sendHtmlEmail(String from, String[] to, String subject, String body) {
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
+        //mimeMessage.setContent(htmlMsg, "text/html"); /** Use this or below line **/
+        try {
+            helper.setText(body, true); // Use this or above line.
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setFrom(from);
+            javaMailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            log.error(e.getMessage());
+        }
+    }
+
     @Override
     public void sendLocationEmail(Location location) {
         if (envVariables.shouldLocationBeEmailed())
@@ -43,10 +62,15 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendExpiredProductsEmail() {
+    public void sendExpiredProductsEmail(String msg, String emailAddress) {
         if (envVariables.shouldExpiredProductsBeEmailed()) {
-            sendEmail(envVariables.getDefaultGmailEmail(), new String[]{envVariables.getDefaultYahooEmail()},
-                    "Expired Products Email", "this is just for test");
+            String[] emails;
+            if (!emailAddress.equalsIgnoreCase(envVariables.getDefaultYahooEmail()))
+                emails = new String[]{envVariables.getDefaultYahooEmail(), emailAddress};
+            else
+                emails = new String[]{emailAddress};
+            sendHtmlEmail(envVariables.getDefaultGmailEmail(), emails,
+                    "Expired Products Email", msg);
         }
     }
 }
