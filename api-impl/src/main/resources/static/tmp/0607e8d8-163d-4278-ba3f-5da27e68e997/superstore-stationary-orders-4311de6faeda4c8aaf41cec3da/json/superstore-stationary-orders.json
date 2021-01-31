@@ -1,0 +1,15 @@
+{
+  "id" : "4311de6faeda4c8aaf41cec3da84d709",
+  "title" : "Superstore Stationary Orders",
+  "thumbImage" : "93da99d9ebd64e3bb800e6be1054c08f.jpeg",
+  "shortDescription" : "This Webapp takes care of managing a company’s superstores stationary orders, it maintains an actual stock of the articles, inventories and receptions are available in order to maintain the stock.",
+  "technologiesUsed" : "Node / Express, Javascript / React, MySql / GraphQL.",
+  "moreImages" : null,
+  "fullDescription" : "<p className=’lead’> I've started this project to meet the requirements of a company, one of the biggest meat provider company in Romania, they needed this software that does the following:</p> <ul> <li> All their stores across the country have to order every now and again stationary items </li> <li> So now they can just login into a store interface that provides a graphical interface to allow them to choose what kind of items they require to order</li> <li> Ones they have choose their order they can submit it and they receive an order reference number which they can trace later and they also receive an Email confirming their full order and the reference number</li> <li> Ones the order has been successfully submitted to the main office, the office receives an Email with the order and letting them know they can now login and view the new order and try to honour it.</li> <li> In the software orders have a status like: Order has just been received, Order was seen, Order was resolved or Order was cancelled</li> <li> Now the administrator will be able to view the new incoming order and will be able to see a price per item times how many items and a total price of the order, he can even see how many items of that kind are on the stock, so he knows if he can honour that order or it’s the time to go to another one and come back later, he can even choose to send only what he thinks the store requires the most and change the order and send it that way, store will receive again another Email confirming that the order has been honoured and what items have been sent to them</li> <li> If the order has successfully honoured the quantity will be taken off the stock </li> <li>At the Admin interface the Administrator can also make Receptions(adding more items in the sock) or make Inventory(counting the existing items on the stock and update the system accordingly), he can disable or add new items, also tell the system what items are for the stores and what items are for the companies Depot’s</li> <li> As well as at any moment in time Administrator can generate reports to see what articles have been ordered in a certain period of time, and what store have ordered the articles on that period of time </li> </ul>",
+  "projectStartDate" : "2019-06-01",
+  "projectEndDate" : "2019-07-01",
+  "httpAccessLink" : "",
+  "repoLink" : "",
+  "rootDirectory" : null,
+  "projectDuration" : 4
+}

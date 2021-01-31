@@ -1,0 +1,15 @@
+{
+  "id" : "0df389f11ad04eb497e1eb75ca1d4aa9",
+  "title" : "Website for a Seamstress",
+  "thumbImage" : "1b835725e7124870b1d63d29c2732707.jpeg",
+  "shortDescription" : "This is mainly a presentation website for a seamstress that I’ve created, people can search for articles and comment, Uses a Facebook like design",
+  "technologiesUsed" : "Serverless NodeJS / Lambda functions, Javascript / React / Create React App, Mongoose / MongoDB.",
+  "moreImages" : null,
+  "fullDescription" : "<p className=’lead’> I’ve done this website for my wife who is a seamstress so she can put articles and share them with friends. </p> <ul> <li>It uses HTML / CSS / Bootstrap, React single page application on Frontend, and Severless Labda on Netlify, and mongoose that connects to mlab MongoDB </li> <li> There is a login system </li> <li>You can search and filter articles, you can search even in the menu bar</li> <li> Its a Facebook style app, and each image can be opened in a modal where people can comment as well</li> <li>There is a Contact page for easy getting in touch.</li><li>App is mobile/tablet friendly too </li>  <li> Uses latest React Hooks technology for creating the views components</li> </ul>",
+  "projectStartDate" : "2019-07-01",
+  "projectEndDate" : "2019-08-15",
+  "httpAccessLink" : "https://croitorielarodica.netlify.com/",
+  "repoLink" : "https://github.com/lucutovidiu/croitorieLaRodica",
+  "rootDirectory" : null,
+  "projectDuration" : 6
+}

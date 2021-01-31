@@ -1,0 +1,15 @@
+{
+  "id" : "1d9dada0df8b4efcb899d0dd7ec3fe09",
+  "title" : "My Portfolio website",
+  "thumbImage" : "20ff43e517f44250b806de397a356b95.jpeg",
+  "shortDescription" : "This portfolio website takes care of all my portfolios to maintain ( Add , Delete, Edit ) in a secure way.",
+  "technologiesUsed" : "Next.js with Node / Express, React, HTML, CSS, SASS, MongoDB / GraphQL",
+  "moreImages" : null,
+  "fullDescription" : "<p>&nbsp;</p>\n<p>I&rsquo;ve created this website so I can present my apps so far and future ones, it was originally written in NextJs as server and React as frontend, but recently redone it completely with Java Spring Boot / Thymeleaf for better performance and also that this is the tehnologie I use now.</p>\n<p class='h5 font-weight-bold'>Technical details:</p>\n<ul style=\"list-style-type: disc;\">\n<li>I used Thymeleaf on front End and on some pages a bit of javascript for AJAX requests for better performance</li>\n<li>On backend I used Java / Spring boot v2.4.1</li>\n<li>Maven as depencency management</li>\n<li>I have integrated spring security where I have user basic authentication + a user may have more than one role</li>\n<li>For development I integrated swagger also</li>\n<li>As DB I use mongoDB that is integrated with MongoRepository in Spring Boot</li>\n<li>It has the capability of zipping all portfolios and give me a link to download the zip file all grouped but each portfolio and have a json file with the compleate information about the project which I can reupload the portfolio back onto the website, this feature is to allow me the capability of having a backup of my portfolios</li>\n<li>When uploading a portfolio pictures are automatically rescaled and compressed and optimized for better performance of the website&nbsp;&nbsp;</li>\n<li>Also has a service that deals with the emails, so in case of a user trying to contact me over the contact page it is possible.</li>\n</ul>\n<p>&nbsp;</p>\n<p class='h5 font-weight-bold'>Old description:</p>\n<ul>\n<li>Has been created with Next.js for server side rendering and better SEO, also uses Node / Express as a static server, with MongoDB / Mongoose / GraphQL for better future maintainability, and frontend React / HTML / CSS / SASS / Bootstrap</li>\n<li>Login system with roles so for CRUD operations on my portfolios only admin has the authority of making changes</li>\n<li>I&rsquo;m also using Redux for better app performance</li>\n<li>Each CRUD request made to the server must have a valid JSON Web Token</li>\n<li>App stores portfolio files in an organized way, each portfolio has their own file system, and database to keep track of them, and any changes made to them</li>\n<li>App is also mobile/tablet friendly</li>\n</ul>",
+  "projectStartDate" : "2019-08-14",
+  "projectEndDate" : "2019-09-04",
+  "httpAccessLink" : "https://lucutovidiu.herokuapp.com/",
+  "repoLink" : "https://github.com/lucutovidiu/portfolio-lucutovidiu-new",
+  "rootDirectory" : null,
+  "projectDuration" : 3
+}

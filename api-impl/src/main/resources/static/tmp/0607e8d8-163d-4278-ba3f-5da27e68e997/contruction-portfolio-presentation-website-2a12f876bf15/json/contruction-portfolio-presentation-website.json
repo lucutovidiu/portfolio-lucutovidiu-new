@@ -1,0 +1,15 @@
+{
+  "id" : "2a12f876bf154ef0b256f2a09968590f",
+  "title" : "Contruction portfolio presentation website",
+  "thumbImage" : "0c54a02cc3134b9dbc3414af9ecb651f.jpeg",
+  "shortDescription" : "This Responsive Web App is responsible of maintaining the companies projects and show them to the user in a user friendly manner.",
+  "technologiesUsed" : "Node / NestJS, Angular, HTML, SCSS, Angular Material, Bootstrap, Docker, NGINX",
+  "moreImages" : null,
+  "fullDescription" : "<p className=’lead’> I've done this web app in order the meet the requirements of a recently started company, they require to present their business, and have the ability to add new projects to their website, and be able to translate their website into more languages, so app is able to translate currently in French, Romanian and also in English. </p> <ul> <li> I've used Angular Universal for SSR prerendering of javascript, and NestJs a Node/Express framework for backend. </li> <li> App features includes: Login with JWT token for authentication, and after they can add new projects </li> <li>The app's backend server uses NestJs an angular like backend so simplifies my work as is almost like using Angular on both: server and frontend</li> <li> Angular on frontend has a Interceptor for wrapping the JWT on each request made to the server</li> <li>Backend has it's own Interceptor also for being able to authenticate some of the secure routes I need protecting, the interceptor is used as an Annotation for easy integration with routes.</li><li>The app is also mobile/tablet friendly. </li>  <li> For developtment only, the app is dockerized in the way that backend on it's container, frontend and it's own container and a NGINX in front of them to reroute requests to the right place</li> Angular app it's modularized, as pages have their own module, shared services also, and shared components as well, about the same thing happens on the server, but in a simpler way.</ul>",
+  "projectStartDate" : "2020-01-18",
+  "projectEndDate" : "2020-02-06",
+  "httpAccessLink" : "https://lazurconcept.herokuapp.com/",
+  "repoLink" : "https://github.com/lucutovidiu/manucontructionwebsite",
+  "rootDirectory" : null,
+  "projectDuration" : 2
+}

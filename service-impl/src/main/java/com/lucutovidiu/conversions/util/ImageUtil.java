@@ -48,7 +48,7 @@ public class ImageUtil {
     }
 
     public BufferedImage scalePhoto(BufferedImage originalImage, PhotoSize photoSize) {
-        return Scalr.resize(originalImage, Scalr.Method.BALANCED, photoSize.getWidth(), photoSize.getHeight());
+        return Scalr.resize(originalImage, photoSize.getWidth(), photoSize.getHeight());
     }
 
     public static BufferedImage crop(BufferedImage image, int percent) {

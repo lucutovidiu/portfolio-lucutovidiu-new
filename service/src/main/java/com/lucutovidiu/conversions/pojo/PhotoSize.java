@@ -10,7 +10,7 @@ public class PhotoSize {
     int height;
 
     public static int getIdealThumbnailWidth() {
-        return 400;
+        return 800;
     }
 
     public static int getIdealMediumWidth() {
