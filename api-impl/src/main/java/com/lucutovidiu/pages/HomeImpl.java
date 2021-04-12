@@ -53,7 +53,7 @@ public class HomeImpl implements Home {
     public void saveUserVisitAndEmail() {
         locationService.getUserLocation()
                 .ifPresent(userLocation -> {
-                    if (envVariables.shouldSaveLocation(userLocation)) {
+                    if (envVariables.shouldSaveLocation(userLocation) && envVariables.shouldSaveOrg(userLocation.getOrg())) {
                         emailService.sendLocationEmail(userLocation);
                         userVisitService.saveVisit(userLocation);
                     }
