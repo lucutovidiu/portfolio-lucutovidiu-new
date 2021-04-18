@@ -25,22 +25,25 @@ public class EnvVariables {
         return locationEmailed.equals("true");
     }
 
-    public boolean shouldSaveLocation(Location location) {
-        if (location == null) return false;
+    private boolean shouldSaveByCountryOrCityLocation(String countryName, String cityName) {
         String[] locations = commaSeparatedNotSavedLocations.split(",");
         for (String loc : locations) {
-            if (loc.equalsIgnoreCase(location.getCountry_name()) || loc.equalsIgnoreCase(location.getCity())) {
+            if (loc.equalsIgnoreCase(countryName.trim()) || loc.equalsIgnoreCase(cityName.trim())) {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean shouldSaveOrg(String userOrg) {
-        if (userOrg == null) return false;
+    public boolean shouldSaveLocation(Location location) {
+        if (location == null) return false;
+        return shouldSaveByCountryOrCityLocation(location.getCountry_name(), location.getCity()) && shouldSaveOrg(location.getOrg());
+    }
+
+    private boolean shouldSaveOrg(String userOrg) {
         String[] orgs = commaSeparatedNotSavedOrgs.split(",");
         for (String org : orgs) {
-            if (org.toUpperCase().startsWith(userOrg.toUpperCase()))
+            if (org.toUpperCase().contains(userOrg.trim().toUpperCase()))
                 return false;
         }
         return true;
