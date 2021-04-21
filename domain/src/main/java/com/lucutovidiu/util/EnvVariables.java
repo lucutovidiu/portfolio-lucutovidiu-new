@@ -43,7 +43,7 @@ public class EnvVariables {
     private boolean shouldSaveOrg(String userOrg) {
         String[] orgs = commaSeparatedNotSavedOrgs.split(",");
         for (String org : orgs) {
-            if (org.toUpperCase().contains(userOrg.trim().toUpperCase()))
+            if (org.equalsIgnoreCase(userOrg.trim().toUpperCase()))
                 return false;
         }
         return true;
