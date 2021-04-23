@@ -46,12 +46,12 @@
                     </div>
                     <div class="font-weight-bold">
                         <span>Data Inceput: </span>
-                        <span th:text="${householdItem.itemStartFromDate}"></span>
+                        <span th:text="${householdItem.getItemStartFromDateFormatted}"></span>
                     </div>
                     <div class="font-weight-bold">
                         <span>Data Expirare: </span>
                         <span th:class="${householdItem.isExpirationDateDue ? 'text-danger':'text-success'}"
-                              th:text="${householdItem.itemExpirationDate}"></span>
+                              th:text="${householdItem.getItemExpirationDateFormatted}"></span>
                     </div>
                     <div class="font-weight-bold">
                         <span>Mai multe Detalii: </span>

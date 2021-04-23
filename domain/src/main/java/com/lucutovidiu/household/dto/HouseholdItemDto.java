@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -15,6 +16,14 @@ public class HouseholdItemDto {
     private String moreInfo;
     private LocalDate lastNotificationSent;
     private int notificationCount;
+
+    public String getItemStartFromDateFormatted() {
+        return itemStartFromDate.format(DateTimeFormatter.ofPattern("dd - MMM - yyyy"));
+    }
+
+    public String getItemExpirationDateFormatted() {
+        return itemExpirationDate.format(DateTimeFormatter.ofPattern("dd - MMM - yyyy"));
+    }
 
     public boolean isExpirationDateDue() {
         return itemExpirationDate.minusMonths(1).isBefore(LocalDate.now());
