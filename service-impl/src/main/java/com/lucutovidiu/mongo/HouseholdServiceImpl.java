@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -62,6 +63,12 @@ public class HouseholdServiceImpl implements HouseholdService {
                 .map(HouseholdGroupEntity::toHouseholdGroupDto)
                 .filter(householdGroupDto -> householdGroupDto.getHouseholdItems().size() > 0)
                 .collect(toList());
+    }
+
+    @Override
+    public Optional<HouseholdGroupDto> getGroup(String groupName, String loggerUser) {
+        return householdGroupRepository.findByGroupNameAndCreatedBy(groupName, loggerUser)
+                .map(HouseholdGroupEntity::toHouseholdGroupDto);
     }
 
     @Override

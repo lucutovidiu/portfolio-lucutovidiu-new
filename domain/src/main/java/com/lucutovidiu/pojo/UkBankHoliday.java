@@ -1,7 +1,6 @@
 package com.lucutovidiu.pojo;
 
-import com.lucutovidiu.news.bankholiday.dto.UkBankHolidayDto;
-import lombok.AllArgsConstructor;
+import com.lucutovidiu.news.bankholiday.dto.BankHolidayDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,16 +10,23 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class UkBankHoliday {
+    private String id;
     @NotBlank
     private String title;
+    private String country;
+    private Integer year;
     private List<UkBankHolidayBody> holiday;
 
-    public UkBankHolidayDto toDto() {
-        UkBankHolidayDto dto = new UkBankHolidayDto();
+    public BankHolidayDto toDto() {
+        BankHolidayDto dto = new BankHolidayDto();
         dto.setTitle(title);
+        dto.setCountry(country);
         dto.setHolidays(holiday.stream().map(UkBankHolidayBody::toDto).collect(Collectors.toList()));
         return dto;
+    }
+
+    public Integer getYear() {
+        return year;
     }
 }

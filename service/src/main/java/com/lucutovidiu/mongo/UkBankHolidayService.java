@@ -7,5 +7,11 @@ import java.util.List;
 
 @Service
 public interface UkBankHolidayService {
-    List<UkBankHoliday> getUkBankHolidays();
+    static String groupName() {
+        return "UK-Bank-Holidays";
+    }
+
+    List<UkBankHoliday> getAllUkBankHolidays();
+
+    List<UkBankHoliday> getAllUkBankHolidaysByYears(List<Integer> years);
 }

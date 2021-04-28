@@ -9,4 +9,5 @@ public class UkBankHolidayBodyDto {
     private String shortDate;
     private String dayOfWeek;
     private String holidayName;
+    private String fullDate;
 }

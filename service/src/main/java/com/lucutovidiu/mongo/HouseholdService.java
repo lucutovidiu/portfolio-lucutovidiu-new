@@ -4,6 +4,7 @@ import com.lucutovidiu.household.dto.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface HouseholdService {
@@ -12,6 +13,8 @@ public interface HouseholdService {
     List<HouseholdGroupOnlyDto> getGroupsOnly(String loggerUser);
 
     List<HouseholdGroupDto> getGroups(String loggerUser);
+
+    Optional<HouseholdGroupDto> getGroup(String groupName, String loggerUser);
 
     List<HouseholdGroupDto> getAllGroups();
 

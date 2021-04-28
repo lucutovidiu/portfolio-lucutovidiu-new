@@ -62,7 +62,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendExpiredProductsEmail(String msg, String emailAddress) {
+    public void sendExpiredProductsEmail(String emailSubject, String msg, String emailAddress) {
         if (envVariables.shouldExpiredProductsBeEmailed()) {
             String[] emails;
             if (!emailAddress.equalsIgnoreCase(envVariables.getDefaultYahooEmail()))
@@ -70,7 +70,7 @@ public class EmailServiceImpl implements EmailService {
             else
                 emails = new String[]{emailAddress};
             sendHtmlEmail(envVariables.getDefaultGmailEmail(), emails,
-                    "Expired Products Email", msg);
+                    emailSubject, msg);
         }
     }
 }

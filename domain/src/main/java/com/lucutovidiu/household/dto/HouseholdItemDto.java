@@ -48,4 +48,9 @@ public class HouseholdItemDto {
         return "<b>" + itemName + "</b> din grupul <b>" + groupName + "</b> va expira la data de <b style='color: #e74c3c'>" + itemExpirationDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")) + "</b><br/>" +
                 "Mai multe informatii: <b>" + moreInfo + "</b>";
     }
+
+    public String getHolidayFormattedEmail(String groupName) {
+        return "Vacanta <b>" + itemName + "</b> din grupul <b>" + groupName + "</b> in data de <b style='color: #2980b9'>" + itemExpirationDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")) + "</b><br/>" +
+                "Mai multe informatii: <b>" + moreInfo + "</b>";
+    }
 }

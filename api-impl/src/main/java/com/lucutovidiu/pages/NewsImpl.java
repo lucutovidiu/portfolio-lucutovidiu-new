@@ -5,10 +5,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
+
+import java.util.List;
 
 import static com.lucutovidiu.cache.CacheNames.GET_ALL_UK_BANK_HOLIDAYS;
 import static com.lucutovidiu.util.PageAttributesUtil.UkBankHolidays;
@@ -22,7 +23,7 @@ public class NewsImpl implements News {
 
     @Override
     public String getNews(Model model) {
-        model.addAttribute(UkBankHolidays, bankHolidays.getUkBankHolidays());
+        model.addAttribute(UkBankHolidays, bankHolidays.getUkBankHolidaysByYears(List.of(2021, 2022)));
         return "news/news";
     }
 

@@ -36,4 +36,9 @@ public interface HouseholdApi {
     @DeleteMapping("/group/{groupId}/item/{itemId}")
     @PreAuthorize("hasRole('PRIVATE')")
     boolean deleteGroupItem(@PathVariable String groupId, @PathVariable String itemId);
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/sync-holiday")
+    @PreAuthorize("hasRole('PRIVATE')")
+    void syncHolidays();
 }

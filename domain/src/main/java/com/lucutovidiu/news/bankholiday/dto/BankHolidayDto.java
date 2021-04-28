@@ -7,7 +7,8 @@ import java.util.List;
 
 @Getter
 @Setter
-public class UkBankHolidayDto {
+public class BankHolidayDto {
     private String title;
+    private String country;
     private List<UkBankHolidayBodyDto> holidays;
 }

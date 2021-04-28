@@ -10,5 +10,5 @@ public interface EmailService {
 
     void sendLocationEmail(Location location);
 
-    void sendExpiredProductsEmail(String msg, String emailAddress);
+    void sendExpiredProductsEmail(String emailSubject, String msg, String emailAddress);
 }

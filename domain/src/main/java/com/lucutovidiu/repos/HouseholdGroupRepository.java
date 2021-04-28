@@ -10,4 +10,6 @@ public interface HouseholdGroupRepository extends MongoRepository<HouseholdGroup
     List<HouseholdGroupEntity> findAllByCreatedBy(String userName);
 
     Optional<HouseholdGroupEntity> findByIdAndCreatedBy(String id, String userName);
+
+    Optional<HouseholdGroupEntity> findByGroupNameAndCreatedBy(String groupName, String userName);
 }

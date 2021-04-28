@@ -1,7 +1,7 @@
 package com.lucutovidiu.news;
 
 import com.lucutovidiu.mongo.UkBankHolidayService;
-import com.lucutovidiu.news.bankholiday.dto.UkBankHolidayDto;
+import com.lucutovidiu.news.bankholiday.dto.BankHolidayDto;
 import com.lucutovidiu.pojo.UkBankHoliday;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +21,19 @@ public class BankHolidaysImpl implements BankHolidays {
 
     @Override
     @Cacheable(value = GET_ALL_UK_BANK_HOLIDAYS)
-    public List<UkBankHolidayDto> getUkBankHolidays() {
-        return ukBankHolidayService.getUkBankHolidays().stream()
+    public List<BankHolidayDto> getUkBankHolidays() {
+        return ukBankHolidayService.getAllUkBankHolidays().stream()
                 .map(UkBankHoliday::toDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    @Cacheable(value = GET_ALL_UK_BANK_HOLIDAYS)
+    public List<BankHolidayDto> getUkBankHolidaysByYears(List<Integer> years) {
+        return ukBankHolidayService.getAllUkBankHolidaysByYears(years).stream()
+                .map(UkBankHoliday::toDto)
+                .collect(Collectors.toList());
+    }
+
+
 }

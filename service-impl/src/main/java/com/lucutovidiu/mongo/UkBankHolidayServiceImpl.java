@@ -1,11 +1,13 @@
 package com.lucutovidiu.mongo;
 
-import com.lucutovidiu.models.UkBankHolidayEntity;
+import com.lucutovidiu.models.BankHolidayEntity;
+import com.lucutovidiu.mongo.country.CountryEnum;
 import com.lucutovidiu.news.exceptions.WebScrapingError;
 import com.lucutovidiu.pojo.UkBankHoliday;
 import com.lucutovidiu.pojo.UkBankHolidayBody;
-import com.lucutovidiu.repos.UkBankHolidayRepository;
+import com.lucutovidiu.repos.BankHolidayRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -20,26 +22,24 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class UkBankHolidayServiceImpl implements UkBankHolidayService {
     public static final String BANK_HOLIDAYS_ENGLAND = ".*bank.*holidays.*england.*";
+    private static final String UK_BANK_HOLIDAY_URL = "https://www.gov.uk/bank-holidays";
     private static final HttpClient client = HttpClient.newHttpClient();
-    private final String bankHolidayUrl = "https://www.gov.uk/bank-holidays";
-    private final UkBankHolidayRepository ukBankHolidayRepository;
+    private final BankHolidayRepository bankHolidayRepository;
 
-    public List<UkBankHoliday> getUkBankHolidays() {
-        List<UkBankHoliday> ukBankHolidays = ukBankHolidayRepository.findAll()
+    public List<UkBankHoliday> getAllUkBankHolidays() {
+        List<UkBankHoliday> ukBankHolidays = bankHolidayRepository.findAll()
                 .stream()
-                .map(UkBankHolidayEntity::toPojo)
+                .map(BankHolidayEntity::toPojo)
                 .collect(Collectors.toList());
         if (!ukBankHolidays.isEmpty()) {
             return ukBankHolidays;
@@ -49,10 +49,19 @@ public class UkBankHolidayServiceImpl implements UkBankHolidayService {
         return scrapedUkBackHolidays;
     }
 
+    @Override
+    public List<UkBankHoliday> getAllUkBankHolidaysByYears(List<Integer> years) {
+        return years.stream()
+                .map(bankHolidayRepository::getAllByYear)
+                .flatMap(Collection::stream)
+                .map(BankHolidayEntity::toPojo)
+                .collect(Collectors.toList());
+    }
+
     private void saveUkBankHolidaysToDb(List<UkBankHoliday> scrapedUkBackHolidays) {
         scrapedUkBackHolidays.stream()
-                .map(UkBankHolidayEntity::convert)
-                .forEach(ukBankHolidayRepository::save);
+                .map(BankHolidayEntity::convert)
+                .forEach(bankHolidayRepository::save);
     }
 
     private List<UkBankHoliday> scrapeUkBackHolidays() {
@@ -70,7 +79,12 @@ public class UkBankHolidayServiceImpl implements UkBankHolidayService {
     }
 
     private UkBankHoliday getUkBankHolidayPojo(String title, Integer year, Element element) {
-        return new UkBankHoliday(title, extractHolidayLines(element, year));
+        UkBankHoliday ukBankHoliday = new UkBankHoliday();
+        ukBankHoliday.setTitle(title);
+        ukBankHoliday.setCountry(CountryEnum.UNITED_KINGDOM.getCountryName());
+        ukBankHoliday.setYear(year);
+        ukBankHoliday.setHoliday(extractHolidayLines(element, year));
+        return ukBankHoliday;
     }
 
     private List<UkBankHolidayBody> extractHolidayLines(Element element, Integer year) {
@@ -86,8 +100,12 @@ public class UkBankHolidayServiceImpl implements UkBankHolidayService {
             pojo.setShortDate(shortDate);
             pojo.setDayOfWeek(dayOfWeek);
             pojo.setHolidayName(holidayName);
-            pojo.setFullDate(LocalDate.of(year, Month.valueOf(dayAndMonth[1].trim().toUpperCase()),
-                    Integer.parseInt(dayAndMonth[0].trim())).toString());
+            if (dayAndMonth.length == 2) {
+                pojo.setFullDate(LocalDate.of(year, Month.valueOf(dayAndMonth[1].trim().toUpperCase()),
+                        Integer.parseInt(dayAndMonth[0].trim())).toString());
+            } else {
+                log.error("Could not properly extract the day and month from the extracted table!");
+            }
             list.add(pojo);
         }
         return list;
@@ -124,7 +142,7 @@ public class UkBankHolidayServiceImpl implements UkBankHolidayService {
     }
 
     private String getBankHolidayWebpage() {
-        HttpRequest request = HttpRequest.newBuilder(URI.create(bankHolidayUrl)).GET().build();
+        HttpRequest request = HttpRequest.newBuilder(URI.create(UK_BANK_HOLIDAY_URL)).GET().build();
         HttpResponse<String> response = null;
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());

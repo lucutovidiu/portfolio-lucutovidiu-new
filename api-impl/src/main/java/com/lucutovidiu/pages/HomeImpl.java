@@ -35,7 +35,7 @@ public class HomeImpl implements Home {
     public String getIndex(Model model, HttpServletRequest request) {
         model.addAttribute(ActivePage, HOME);
         saveUserVisitAndEmail();
-        expiredProducts.emailExpiredProducts();
+        new Thread(expiredProducts::emailExpiredProducts).start();
         return "home/index";
     }
 

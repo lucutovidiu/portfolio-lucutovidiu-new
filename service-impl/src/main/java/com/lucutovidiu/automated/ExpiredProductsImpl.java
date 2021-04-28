@@ -1,10 +1,13 @@
 package com.lucutovidiu.automated;
 
 import com.lucutovidiu.expiredprod.ExpiredProducts;
+import com.lucutovidiu.household.dto.HouseholdGroupDto;
 import com.lucutovidiu.household.dto.HouseholdItemDto;
 import com.lucutovidiu.mongo.HouseholdService;
+import com.lucutovidiu.mongo.UkBankHolidayService;
 import com.lucutovidiu.service.EmailService;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +17,7 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class ExpiredProductsImpl implements ExpiredProducts {
@@ -29,21 +33,42 @@ public class ExpiredProductsImpl implements ExpiredProducts {
                 .flatMap(dto -> dto.getHouseholdItems().stream()
                         .filter(HouseholdItemDto::isExpirationDateDue)
                         .filter(HouseholdItemDto::shouldNotificationBeSendAgainAtThisTime)
-                        .map(item -> ExpiredProductsEmailStructure.builder()
-                                .groupId(dto.getId())
-                                .itemId(item.getId())
-                                .msg(item.getFormattedEmail(dto.getGroupName()))
-                                .createdBy(dto.getCreatedBy())
-                                .build()))
+                        .map(item -> {
+                            if (dto.getGroupName().equals(UkBankHolidayService.groupName())) {
+                                return getHolidayEmail(dto, item);
+                            }
+                            return getGeneralEmail(dto, item);
+                        }))
                 .collect(groupingBy(ExpiredProductsEmailStructure::getCreatedBy));
         emailExpiredProducts(expiredProductsGroupedByEmail);
+    }
+
+    private ExpiredProductsEmailStructure getHolidayEmail(HouseholdGroupDto dto, HouseholdItemDto item) {
+        return ExpiredProductsEmailStructure.builder()
+                .groupId(dto.getId())
+                .itemId(item.getId())
+                .msg(item.getHolidayFormattedEmail(dto.getGroupName()))
+                .mailSubject("Upcoming uk Holiday")
+                .createdBy(dto.getCreatedBy())
+                .build();
+    }
+
+    private ExpiredProductsEmailStructure getGeneralEmail(HouseholdGroupDto dto, HouseholdItemDto item) {
+        return ExpiredProductsEmailStructure.builder()
+                .groupId(dto.getId())
+                .itemId(item.getId())
+                .msg(item.getFormattedEmail(dto.getGroupName()))
+                .mailSubject("Expired Products Email")
+                .createdBy(dto.getCreatedBy())
+                .build();
     }
 
     private void emailExpiredProducts(Map<String, List<ExpiredProductsEmailStructure>> expiredProductsGroupedByEmail) {
         expiredProductsGroupedByEmail.forEach((email, productsEmailStructures) -> {
             productsEmailStructures.forEach(product -> householdService.updateLastNotification(product.getGroupId(), product.getItemId()));
             String combinedMsg = productsEmailStructures.stream().map(ExpiredProductsEmailStructure::getMsg).collect(Collectors.joining("<br/><br/>"));
-            emailService.sendExpiredProductsEmail(combinedMsg, email);
+            emailService.sendExpiredProductsEmail(productsEmailStructures.get(0).getMailSubject(), combinedMsg, email);
+            log.info("{}", productsEmailStructures.get(0).getMailSubject());
         });
     }
 }
@@ -56,5 +81,6 @@ class ExpiredProductsEmailStructure {
     private String groupId;
     private String itemId;
     private String msg;
+    private String mailSubject;
     private String createdBy;
 }
