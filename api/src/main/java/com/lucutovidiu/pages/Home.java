@@ -14,7 +14,7 @@ import java.io.IOException;
 @RequestMapping("/")
 public interface Home {
 
-    @GetMapping("/")
+    @GetMapping
     String getIndex(Model model, HttpServletRequest request);
 
     @GetMapping(value = "/favicon.ico", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
