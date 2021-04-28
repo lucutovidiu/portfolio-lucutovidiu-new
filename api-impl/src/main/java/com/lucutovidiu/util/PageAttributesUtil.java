@@ -9,4 +9,5 @@ public class PageAttributesUtil {
     public static String EditPortfolioMode = "editPortfolioMode";
     public static String HouseholdGroups = "householdGroups";
     public static String UserRoles = "userRoles";
+    public static String UkBankHolidays = "ukBankHolidays";
 }

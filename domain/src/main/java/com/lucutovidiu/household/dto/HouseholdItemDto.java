@@ -45,7 +45,7 @@ public class HouseholdItemDto {
     }
 
     public String getFormattedEmail(String groupName) {
-        return "<b>" + itemName + "</b> din grupul <b>" + groupName + "</b> va expira la data de <b style='color: #e74c3c'>" + itemExpirationDate + "</b><br/>" +
+        return "<b>" + itemName + "</b> din grupul <b>" + groupName + "</b> va expira la data de <b style='color: #e74c3c'>" + itemExpirationDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")) + "</b><br/>" +
                 "Mai multe informatii: <b>" + moreInfo + "</b>";
     }
 }

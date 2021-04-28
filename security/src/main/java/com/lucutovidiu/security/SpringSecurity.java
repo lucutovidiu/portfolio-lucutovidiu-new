@@ -44,7 +44,8 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                         "/api/email/contact",
                         "/api/login",
                         "/portfolio/**",
-                        "/api/img/**")
+                        "/api/img/**",
+                        "/news/**")
                 .permitAll()
                 .and()
 
