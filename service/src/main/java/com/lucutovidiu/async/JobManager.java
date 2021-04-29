@@ -48,8 +48,6 @@ public class JobManager {
                             log.info("running job: {} on thread: {}", job.getName().toString(), Thread.currentThread().getName());
                             job.isBeenRunAlready(true);
                             job.getRunnable().run();
-                        }
-                        if (isMarkForRemoval(job)) {
                             iterator.remove();
                         }
                     }

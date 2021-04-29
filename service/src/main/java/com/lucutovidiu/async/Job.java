@@ -40,7 +40,7 @@ public class Job {
         return Objects.hash(name, createdDate);
     }
 
-    public static enum JobTypes {
+    public enum JobTypes {
         UserVisitAndEmail,
         ExpiredProductsEmail;
     }
