@@ -52,8 +52,6 @@ public class HomeImpl implements Home {
         return Files.readAllBytes(Paths.get("api-impl/src/main/resources/static/robots.txt"));
     }
 
-
-    @Async
     public void saveUserVisitAndEmail() {
         locationService.getUserLocation()
                 .ifPresent(userLocation -> {
