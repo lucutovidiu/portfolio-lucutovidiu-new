@@ -1,5 +1,7 @@
 package com.lucutovidiu.pages;
 
+import com.lucutovidiu.async.Job;
+import com.lucutovidiu.async.JobManager;
 import com.lucutovidiu.expiredprod.ExpiredProducts;
 import com.lucutovidiu.ip.LocationService;
 import com.lucutovidiu.mongo.UserVisitService;
@@ -30,12 +32,13 @@ public class HomeImpl implements Home {
     private final UserVisitService userVisitService;
     private final EnvVariables envVariables;
     private final ExpiredProducts expiredProducts;
+    private final JobManager jobManager = JobManager.getInstance();
 
     @Override
     public String getIndex(Model model, HttpServletRequest request) {
         model.addAttribute(ActivePage, HOME);
-        saveUserVisitAndEmail();
-        new Thread(expiredProducts::emailExpiredProducts).start();
+        jobManager.addJobToQueue(new Job(Job.JobTypes.UserVisitAndEmail, this::saveUserVisitAndEmail));
+        jobManager.addJobToQueue(new Job(Job.JobTypes.ExpiredProductsEmail, expiredProducts::emailExpiredProducts));
         return "home/index";
     }
 
@@ -48,6 +51,7 @@ public class HomeImpl implements Home {
     public byte[] getRobots() throws IOException {
         return Files.readAllBytes(Paths.get("api-impl/src/main/resources/static/robots.txt"));
     }
+
 
     @Async
     public void saveUserVisitAndEmail() {
