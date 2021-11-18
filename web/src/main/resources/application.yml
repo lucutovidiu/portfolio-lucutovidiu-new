@@ -22,7 +22,7 @@ spring:
 env:
   defaultGmailEmail: ${DEFAULT_GMAIL_EMAIL_ADDRESS}
   defaultYahooEmail: ${DEFAULT_YAHOO_EMAIL_ADDRESS}
-  locationEmailed: ${EMAIL_CLIENT_LOCATION}
+  emailClientLocation: ${EMAIL_CLIENT_LOCATION:true}
   urlForCrossOrigin: ${URL_FOR_CROSS_ORIGIN:localhost}
   commaSeparatedNotSavedLocations: ${COMMA_SEPARATED_NOT_SAVED_LOCATIONS}
   commaSeparatedNotSavedOrgs: ${COMMA_SEPARATED_NOT_SAVED_ORGS}

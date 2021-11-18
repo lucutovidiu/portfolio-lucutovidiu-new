@@ -34,7 +34,7 @@ public class ExpiredProductsImpl implements ExpiredProducts {
                         .filter(HouseholdItemDto::isExpirationDateDue)
                         .filter(HouseholdItemDto::shouldNotificationBeSendAgainAtThisTime)
                         .map(item -> {
-                            if (dto.getGroupName().equals(UkBankHolidayService.groupName())) {
+                            if (dto.getGroupName().equals(UkBankHolidayService.GROUP_NAME)) {
                                 return getHolidayEmail(dto, item);
                             }
                             return getGeneralEmail(dto, item);

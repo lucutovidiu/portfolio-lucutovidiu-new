@@ -51,12 +51,12 @@ public class HouseholdApiImpl implements HouseholdApi {
 
     @Override
     public void syncHolidays() {
-        Optional<HouseholdGroupDto> ukHolidayGroup = householdService.getGroup(UkBankHolidayService.groupName(), getLoggedUser());
+        Optional<HouseholdGroupDto> ukHolidayGroup = householdService.getGroup(UkBankHolidayService.GROUP_NAME, getLoggedUser());
         ukHolidayGroup.ifPresentOrElse(this::syncPresentGroup, this::createAndSyncPresentGroup);
     }
 
     private void createAndSyncPresentGroup() {
-        HouseholdGroupRequestDto groupRequest = new HouseholdGroupRequestDto(UkBankHolidayService.groupName());
+        HouseholdGroupRequestDto groupRequest = new HouseholdGroupRequestDto(UkBankHolidayService.GROUP_NAME);
         HouseholdGroupPostResponseDto groupResponse = householdService.addGroup(groupRequest, getLoggedUser());
         HouseholdGroupDto group = new HouseholdGroupDto();
         group.setId(groupResponse.getId());

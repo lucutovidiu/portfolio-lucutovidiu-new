@@ -7,9 +7,7 @@ import java.util.List;
 
 @Service
 public interface UkBankHolidayService {
-    static String groupName() {
-        return "UK-Bank-Holidays";
-    }
+    String GROUP_NAME = "UK-Bank-Holidays";
 
     List<UkBankHoliday> getAllUkBankHolidays();
 

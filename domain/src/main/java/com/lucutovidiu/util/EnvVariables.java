@@ -14,7 +14,7 @@ public class EnvVariables {
 
     private String defaultGmailEmail;
     private String defaultYahooEmail;
-    private String locationEmailed;
+    private String emailClientLocation;
     private String urlForCrossOrigin;
     private String commaSeparatedNotSavedLocations;
     private String commaSeparatedNotSavedOrgs;
@@ -22,7 +22,7 @@ public class EnvVariables {
     private String emailExpiredProducts;
 
     public boolean shouldLocationBeEmailed() {
-        return locationEmailed.equals("true");
+        return emailClientLocation.equals("true");
     }
 
     private boolean shouldSaveByCountryOrCityLocation(String countryName, String cityName) {

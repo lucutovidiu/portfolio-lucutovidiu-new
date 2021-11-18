@@ -10,7 +10,6 @@ import com.lucutovidiu.util.EnvVariables;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
@@ -19,6 +18,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static com.lucutovidiu.async.Job.JobTypes.ExpiredProductsEmail;
+import static com.lucutovidiu.async.Job.JobTypes.UserVisitAndEmail;
 import static com.lucutovidiu.util.PageAttributesUtil.ActivePage;
 import static com.lucutovidiu.util.Pages.HOME;
 
@@ -32,13 +33,15 @@ public class HomeImpl implements Home {
     private final UserVisitService userVisitService;
     private final EnvVariables envVariables;
     private final ExpiredProducts expiredProducts;
-    private final JobManager jobManager = JobManager.getInstance();
+//    private final JobManager jobManager = JobManager.getInstance();
 
     @Override
     public String getIndex(Model model, HttpServletRequest request) {
         model.addAttribute(ActivePage, HOME);
-        jobManager.addJobToQueue(new Job(Job.JobTypes.UserVisitAndEmail, this::saveUserVisitAndEmail));
-        jobManager.addJobToQueue(new Job(Job.JobTypes.ExpiredProductsEmail, expiredProducts::emailExpiredProducts));
+//        jobManager.addJobToQueue(new Job(UserVisitAndEmail, this::saveUserVisitAndEmail));
+//        jobManager.addJobToQueue(new Job(ExpiredProductsEmail, expiredProducts::emailExpiredProducts));
+        saveUserVisitAndEmail();
+        expiredProducts.emailExpiredProducts();
         return "home/index";
     }
 
