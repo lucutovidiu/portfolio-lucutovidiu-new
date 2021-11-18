@@ -20,7 +20,6 @@ public class LocationServiceImpl implements LocationService {
 
     private Optional<Location> getUserLocationByIpAddress(String ipAddress) {
         log.info("Resolving location for ip: {}", ipAddress);
-        ipAddress = "81.196.240.92";
         if (ipAddress.equals(LOCAL_HOST)) return Optional.empty();
         try {
             RestTemplate template = new RestTemplate();
