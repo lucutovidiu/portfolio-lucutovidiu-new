@@ -26,6 +26,7 @@ env:
   urlForCrossOrigin: ${URL_FOR_CROSS_ORIGIN:localhost}
   commaSeparatedNotSavedLocations: ${COMMA_SEPARATED_NOT_SAVED_LOCATIONS}
   commaSeparatedNotSavedOrgs: ${COMMA_SEPARATED_NOT_SAVED_ORGS}
+  commaSeparatedNotSavedOptionLocation: ${COMMA_SEPARATED_NOT_SAVED_OPTION_LOCATION}
   jwtSecret: ${JWT_SECRET}
   emailExpiredProducts: ${EMAIL_EXPIRED_PRODUCTS:true}
 server:

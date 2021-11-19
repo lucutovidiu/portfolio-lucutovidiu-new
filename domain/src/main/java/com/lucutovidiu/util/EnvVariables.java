@@ -5,8 +5,6 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Locale;
-
 @Data
 @Configuration
 @ConfigurationProperties(prefix = "env")
@@ -20,6 +18,7 @@ public class EnvVariables {
     private String commaSeparatedNotSavedOrgs;
     private String jwtSecret;
     private String emailExpiredProducts;
+    private String commaSeparatedNotSavedOptionLocation;
 
     public boolean shouldLocationBeEmailed() {
         return emailClientLocation.equals("true");
@@ -38,6 +37,24 @@ public class EnvVariables {
     public boolean shouldSaveLocation(Location location) {
         if (location == null) return false;
         return shouldSaveByCountryOrCityLocation(location.getCountry_name(), location.getCity()) && shouldSaveOrg(location.getOrg());
+    }
+
+    public boolean shouldSaveLocationByOptionAndValue(Location location) {
+        if (location == null) return false;
+        return shouldSaveByOptionAndValue(location);
+    }
+
+    public boolean shouldSaveByOptionAndValue(Location location) {
+        String[] optionLocation = commaSeparatedNotSavedOptionLocation.split(",");
+        for (String optVal : optionLocation) {
+            String[] optVal1 = optVal.split("=");
+            String opt = optVal1[0];
+            String val = optVal1[1];
+            if(location.toString().contains(opt + "=" + val)){
+                return false;
+            }
+        }
+        return true;
     }
 
     private boolean shouldSaveOrg(String userOrg) {
