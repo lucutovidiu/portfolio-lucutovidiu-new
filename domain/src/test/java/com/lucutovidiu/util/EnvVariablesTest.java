@@ -13,6 +13,7 @@ class EnvVariablesTest {
     public static final String NOT_SAVED_ORGS = "YANDEX LLC,GOOGLE";
     public static final String NOT_SAVED_OPT_VAL = "city='Satu Mare',country='RO'";
     public static final String SAVED_OPT_VAL = "city='Kyiv',country='UA'";
+    public static final String SAVED_OPT_VAL2 = "city='Satu Mare',city='Kyiv'";
     private final EnvVariables envVariables = new EnvVariables();
 
     @Test
@@ -52,7 +53,7 @@ class EnvVariablesTest {
 
     @Test
     public void shouldSaveByOptionAndValue_shouldReturnFalse() {
-        envVariables.setCommaSeparatedNotSavedOptionLocation(SAVED_OPT_VAL);
+        envVariables.setCommaSeparatedNotSavedOptionLocation(SAVED_OPT_VAL2);
         assertThat(envVariables.shouldSaveLocationByOptionAndValue(getRealPossibleLocationForTest())).isFalse();
     }
 
