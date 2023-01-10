@@ -35,7 +35,8 @@ public class EnvVariables {
     }
 
     public boolean shouldSaveLocation(Location location) {
-        if (location == null) return false;
+        if (location == null || location.getCountry_name() == null || location.getCity() == null)
+            return false;
         return shouldSaveByCountryOrCityLocation(location.getCountry_name(), location.getCity()) && shouldSaveOrg(location.getOrg());
     }
 
@@ -50,7 +51,7 @@ public class EnvVariables {
             String[] optVal1 = optVal.split("=");
             String opt = optVal1[0];
             String val = optVal1[1];
-            if(location.toString().contains(opt + "=" + val)){
+            if (location.toString().contains(opt + "=" + val)) {
                 return false;
             }
         }
