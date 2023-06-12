@@ -9,6 +9,7 @@ import com.lucutovidiu.service.EmailService;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -26,8 +27,7 @@ public class ExpiredProductsImpl implements ExpiredProducts {
     private final HouseholdService householdService;
 
     //@Scheduled(cron = "[Seconds] [Minutes] [Hours] [Day of month] [Month] [Day of week] [Year]"
-    //cron every 2 hours
-//    @Scheduled(cron = "0 0 */2 * * ?")
+    @Scheduled(cron=  "0 30 8 * * *") //If you want 8:30:am then set it to
     public void emailExpiredProducts() {
         Map<String, List<ExpiredProductsEmailStructure>> expiredProductsGroupedByEmail = householdService.getAllGroups().stream()
                 .flatMap(dto -> dto.getHouseholdItems().stream()

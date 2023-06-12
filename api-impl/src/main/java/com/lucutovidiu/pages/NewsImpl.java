@@ -27,7 +27,7 @@ public class NewsImpl implements News {
         return "news/news";
     }
 
-    @Scheduled(cron = "0 0 9 25 * ?")
+//    @Scheduled(cron = "0 0 9 25 * ?")
     @CacheEvict(value = {GET_ALL_UK_BANK_HOLIDAYS}, allEntries = true)
     public void expireBankHolidays() {
         log.info("Cleared Cache: {} all entries", GET_ALL_UK_BANK_HOLIDAYS);
