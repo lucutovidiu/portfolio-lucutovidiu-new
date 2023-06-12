@@ -41,7 +41,7 @@ public class HomeImpl implements Home {
 //        jobManager.addJobToQueue(new Job(UserVisitAndEmail, this::saveUserVisitAndEmail));
 //        jobManager.addJobToQueue(new Job(ExpiredProductsEmail, expiredProducts::emailExpiredProducts));
         saveUserVisitAndEmail();
-        expiredProducts.emailExpiredProducts();
+//        expiredProducts.emailExpiredProducts();
         return "home/index";
     }
 
