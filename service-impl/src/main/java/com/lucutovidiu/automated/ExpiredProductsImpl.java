@@ -12,8 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
@@ -26,9 +25,15 @@ public class ExpiredProductsImpl implements ExpiredProducts {
     private final EmailService emailService;
     private final HouseholdService householdService;
 
+    /*
+    For example, 0 0 8 * * ? means that the task is executed at 08:00:00 every day.
+    seconds minutes hours day-of-month month day-of-week
+       0       0      8        *         *        ?
+     */
     //@Scheduled(cron = "[Seconds] [Minutes] [Hours] [Day of month] [Month] [Day of week] [Year]"
-    @Scheduled(cron=  "0 30 8 * * *") //If you want 8:30:am then set it to
+    @Scheduled(cron = "0 0 8 * * ?") //If you want 8:00:am then set it to
     public void emailExpiredProducts() {
+        System.out.println("Executed cron");
         Map<String, List<ExpiredProductsEmailStructure>> expiredProductsGroupedByEmail = householdService.getAllGroups().stream()
                 .flatMap(dto -> dto.getHouseholdItems().stream()
                         .filter(HouseholdItemDto::isExpirationDateDue)
