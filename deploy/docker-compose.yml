@@ -4,8 +4,10 @@ services:
   lucutovidiuproject:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
     env_file:
       - .env
-    ports:
-    - '6001:8080'
+
+networks:
+  portfo:
+    external: true

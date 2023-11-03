@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  port-nginx:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "6001:80"
+
+networks:
+  portfo:
+    external: true
