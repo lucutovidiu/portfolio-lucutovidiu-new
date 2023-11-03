@@ -19,11 +19,11 @@
     <li>
         <a href="/about">
             <span th:style="${activePage == 'ABOUT' ? 'color:#3498db' : 'color:#b9b9b9'}">About</span></a></li>
-    <li>
-        <a href="/logout" sec:authorize="isAuthenticated()" style="color:#b9b9b9">Logout</a>
-        <a href="/login" sec:authorize="isAnonymous()"
-           th:style="${activePage == 'LOGIN' ? 'color:#3498db' : 'color:#b9b9b9'}">Login</a>
-    </li>
+<!--    <li>-->
+<!--        <a href="/logout" sec:authorize="isAuthenticated()" style="color:#b9b9b9">Logout</a>-->
+<!--        <a href="/login" sec:authorize="isAnonymous()"-->
+<!--           th:style="${activePage == 'LOGIN' ? 'color:#3498db' : 'color:#b9b9b9'}">Login</a>-->
+<!--    </li>-->
 </div>
 </body>
 </html>

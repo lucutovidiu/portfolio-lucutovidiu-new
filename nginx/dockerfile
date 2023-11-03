@@ -2,7 +2,9 @@ FROM nginx:1.23.3-alpine
 WORKDIR /nginx
 COPY /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 COPY /etc/nginx/nginx.conf /etc/nginx/nginx.conf
-EXPOSE 80
-#EXPOSE 443
+COPY /portfolio-ssl-cert/fullchain.pem /nginx/portfolio-ssl-cert/fullchain.pem
+COPY /portfolio-ssl-cert/privkey.pem /nginx/portfolio-ssl-cert/privkey.pem
+#EXPOSE 80
+EXPOSE 443
 # Start the Nginx server
 CMD ["nginx", "-g", "daemon off;"]

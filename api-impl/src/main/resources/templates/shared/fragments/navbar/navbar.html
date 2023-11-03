@@ -9,7 +9,11 @@
 <div th:fragment="navbar(activePage)">
     <nav class="navBar_wrapper">
         <ul class="navBar_desktop_menu">
-            <li class="navBar_desktop_logo">Ovidiu Lucut</li>
+            <li class="navBar_desktop_logo">
+                <a href="/login"
+                   th:style="'color:#b9b9b9; cursor: default'">Ovidiu Lucut
+                </a>
+            </li>
             <span class="navBar_items_list">
                 <div th:insert="shared/fragments/navbar/navbar-items :: navbar-items(${activePage})"></div>
           </span>

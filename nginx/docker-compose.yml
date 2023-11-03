@@ -2,12 +2,15 @@ version: '3'
 
 services:
   port-nginx:
+    container_name: port-nginx-image
     build:
       context: .
       dockerfile: dockerfile
     ports:
-      - "6001:80"
+      - "443:443"
+    networks:
+      - jetty-plus
 
 networks:
-  portfo:
+  jetty-plus:
     external: true
