@@ -1,17 +1,21 @@
-version: '3'
+version: '3.8'
 
 services:
-  lucutovidiuproject:
+  my-portfolio:
+    container_name: my-portfolio
     build:
       context: .
       dockerfile: dockerfile
     env_file:
       - .env
     expose:
-      - '8080'
+      - 9006:9006
+    # ports:
+    #   - 9006:9006
+    restart: unless-stopped
     networks:
-      - jetty-plus
+      - bible-project-network
 
 networks:
-  jetty-plus:
+  bible-project-network:
     external: true
