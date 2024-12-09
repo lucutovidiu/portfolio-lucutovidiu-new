@@ -70,6 +70,8 @@ public class PortfolioEntity extends BaseEntity {
                 .shortDescription(shortDescription)
                 .technologiesUsed(technologiesUsed)
                 .rootDirectory(rootDirectory)
+                .httpAccessLink(httpAccessLink)
+                .repoLink(repoLink)
                 .build();
     }
 

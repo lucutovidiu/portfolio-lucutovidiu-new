@@ -23,11 +23,6 @@ public class PortfoliosImpl implements Portfolios {
         model.addAttribute(ActivePage, PORTFOLIOS);
         model.addAttribute(Portfolios, portfolioDbService.getAllPortfolios());
         model.addAttribute(UpcomingPortfolios, upcomingPortfolioService.getUpcomingPortfolios());
-
-        portfolioDbService.getAllPortfolios().stream().forEach(
-                System.out::println
-        );
-
         return "portfolios/portfolios";
     }
 

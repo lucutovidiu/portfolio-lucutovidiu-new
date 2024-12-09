@@ -13,6 +13,8 @@ public class PortfolioBasic {
     private String shortDescription;
     private String technologiesUsed;
     private String rootDirectory;
+    private String httpAccessLink;
+    private String repoLink;
 
     public PortfolioBasic() {
     }
