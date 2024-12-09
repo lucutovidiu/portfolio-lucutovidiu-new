@@ -28,11 +28,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
             <groupId>com.lucutovidiu</groupId>
             <artifactId>service</artifactId>
             <version>1.0.0</version>

@@ -151,6 +151,7 @@ public class PortfolioPhotoStorageServiceImpl implements PortfolioPhotoStorageSe
     }
 
     private String createFolderStructure(String requestId) throws IOException {
+        log.info("Trying to create folder structure for path: {}", combinePaths(TMP_DIR, requestId));
         return Files.createDirectory(Paths.get(combinePaths(TMP_DIR, requestId))).toString();
     }
 

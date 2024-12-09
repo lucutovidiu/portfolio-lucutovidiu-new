@@ -38,4 +38,24 @@
     color: #5e585a;
 }
 
+.image-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%; /* Ensures the image scales to the container's width */
+    object-fit: cover; /* Makes the image cover the entire container */
+    object-position: center; /* Centers the image */
+}
+
+.arrow-color {
+    display: flex;
+    justify-content: center;
+    background-color: #2a3f93;
+    padding: 0.8rem 0.8rem;
+    border-radius: 50%;
+}
 

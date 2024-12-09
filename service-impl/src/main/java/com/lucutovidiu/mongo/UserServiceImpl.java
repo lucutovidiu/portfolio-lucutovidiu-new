@@ -7,12 +7,14 @@ import com.lucutovidiu.users.dto.UserBasicDto;
 import com.lucutovidiu.users.dto.UserDto;
 import com.lucutovidiu.users.dto.UserRequestDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +24,7 @@ import static com.lucutovidiu.cache.CacheNames.*;
 
 @Component
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -89,6 +92,18 @@ public class UserServiceImpl implements UserService {
                 .map(entity -> userRepository.save(entity.updateUserEntity(userRequest)))
                 .orElseThrow(() -> new UserNotFoundException("User not found!!!"));
         return true;
+    }
+
+    @Override
+    @Transactional
+    public boolean changePassword(String userEmail, String newPassword) {
+        return getByUserNameOrUserEmail(userEmail)
+                .map(userEntity -> {
+                    log.info("Changing password for user email: {}", userEmail);
+                    userEntity.setPassword(getEncoredPassword(newPassword));
+                    userRepository.save(userEntity);
+                    return true;
+                }).orElse(false);
     }
 
     private String getEncoredPassword(String unencryptedPassword) {

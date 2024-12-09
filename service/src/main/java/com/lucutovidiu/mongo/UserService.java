@@ -23,4 +23,6 @@ public interface UserService {
     UserDto getUserByUserId(String userId);
 
     boolean editUser(UserRequestDto userRequest);
+
+    boolean changePassword(String userEmail, String newPassword);
 }

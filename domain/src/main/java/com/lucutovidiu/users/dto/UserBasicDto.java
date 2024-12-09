@@ -1,10 +1,8 @@
 package com.lucutovidiu.users.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class UserBasicDto {
     private String id;
     private String userName;
