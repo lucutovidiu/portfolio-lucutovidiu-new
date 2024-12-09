@@ -10,8 +10,8 @@ services:
       - .env
 #    expose:
 #      - 9006:9006
-    ports:
-      - "9006:9006"
+#    ports:
+#      - "9006:9006"
     restart: unless-stopped
     networks:
       - bible-project-network

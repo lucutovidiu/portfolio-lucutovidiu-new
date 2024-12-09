@@ -57,6 +57,7 @@ public class HomeImpl implements Home {
 
     public void saveUserVisitAndEmail() {
         locationService.getUserLocation()
+                .filter(userLocation -> userLocation.getCity() != null)
                 .ifPresent(userLocation -> {
                     if (envVariables.shouldSaveByOptionAndValue(userLocation)) {
                         emailService.sendLocationEmail(userLocation);
